@@ -1,0 +1,25 @@
+.__news-banner {
+    display: none;
+}
+
+@include xxl {
+    .__news-banner {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3rem;
+
+        .__card {
+            padding-top: 0;
+            width: 820px;
+
+
+            .__card-text {
+                width: 400px;
+            }
+
+            .__card-text-left {
+                margin-left: 10rem;
+            }
+        }
+    }
+}

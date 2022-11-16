@@ -1,0 +1,32 @@
+.__categories {
+    margin-top: 100px;
+    max-width: 1110px;
+    flex-direction: column;
+
+    .__categories-grid {
+        display: grid;
+        grid-gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(1, 1fr);
+        margin-top: 1rem;
+    }
+}
+
+@include md {
+    .__categories {
+
+        .__categories-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    
+    }
+}
+@include xl {
+    .__categories {
+        .__categories-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    
+    }
+}

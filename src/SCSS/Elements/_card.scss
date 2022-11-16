@@ -1,0 +1,318 @@
+.__card {
+    background-color: $color-gray-6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: start;
+    max-width: 1110px;
+    padding: 0.5rem 1rem 0 1.5rem;
+
+
+
+    h2 {
+        font-size: $font-size-45;
+        font-weight: $font-weight-bold;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: $font-size-16;
+        font-weight: $font-weight-regular;
+        margin-bottom: 2rem;
+    }
+
+    .__card-img {
+        margin-left: 1rem;
+    }
+
+}
+
+.__brown {
+    background-color: $color-brown-1;
+}
+
+.__brown-2 {
+    background-color: $color-brown-2;
+}
+
+.__grid-card {
+    text-align: center;
+    width: 255px;
+
+    .__grid-card-image {
+        position: relative;
+        overflow: hidden;
+        background-color: none;
+        max-width: 100%;
+        height: 215px;
+
+        .__grid-card-buttons {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: none;
+            opacity: 90%;
+            transition: 250ms ease-in-out;
+        }
+        
+
+        .__btn-red {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            transition: 250ms ease-in-out;
+        }
+
+        .__grid-card-btn-round {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            transition: 250ms ease-in-out;
+
+            .__round-button {
+                margin-top: .5rem;
+            }
+        }
+    }
+    .__grid-card-text-category {
+        margin-top: .5rem;
+        font-size: $font-size-13;
+        font-weight: $font-weight-meduim;
+        color: $color-gray-2;
+    }
+    .__grid-card-text-product {
+        margin-top: -15px;
+        font-size: $font-size-16;
+        font-weight: $font-weight-semibold;
+    }
+
+    .__grid-rating {
+        margin-top: -15px;
+        color: $color-red-1;
+    }
+
+    .__grid-price-original {
+        display: inline;
+        font-size: $font-size-18;
+        font-weight: $font-weight-semibold;
+    }
+}
+
+
+.__grid-cat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-gray-5;
+    width: 215px;
+    height: 215px;
+    position: relative;
+
+    .__grid-cat-title {
+        font-size: $font-size-20;
+        font-weight: $font-weight-semibold;
+        margin-bottom: 2rem;
+    }
+    .__btn-black {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+.__display-card {
+    margin-top: 2rem;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-areas: 
+    'img text text text'
+    'img text text text'
+    'img text text text'
+    ;
+    text-align: start;
+    width: 100%;
+
+    .__display-card-image {
+        grid-area: img;
+        position: relative;
+        overflow: hidden;
+        background-color: none;
+        width: 215px;
+        height: 215px;
+
+        .__display-card-buttons {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: none;
+            opacity: 90%;
+            transition: 250ms ease-in-out;
+        }
+        
+
+        .__btn-red {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            transition: 250ms ease-in-out;
+            text-align: center;
+        }
+
+        .__display-card-btn-round {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            transition: 250ms ease-in-out;
+
+            .__round-button {
+                margin-top: .5rem;
+            }
+        }
+    }
+
+    .__display-card-text {
+        grid-area: text;
+        width: 100px;
+
+        .__display-card-text-category {
+            margin-top: .5rem;
+            font-size: $font-size-13;
+            font-weight: $font-weight-meduim;
+            color: $color-gray-2;
+        }
+        .__display-card-text-product {
+            margin-top: -15px;
+            font-size: $font-size-16;
+            font-weight: $font-weight-semibold;
+        }
+    
+        .__display-rating {
+            margin-top: -15px;
+            color: $color-red-1;
+        }
+    
+        .__display-price-original {
+            display: inline;
+            font-size: $font-size-18;
+            font-weight: $font-weight-semibold;
+        }
+    }
+
+}
+
+@include xxl {
+
+
+    .__grid-card {
+        .__grid-card-image {
+            .__grid-card-buttons {
+                position: absolute;
+                top: 250px;
+                height: 100%;
+                width: 100%;
+                background-color: $color-gray-6;
+                opacity: 90%;
+                transition: 250ms ease-in-out;
+            }
+    
+            &:hover .__grid-card-buttons {
+                top: 0;
+            }
+    
+            &:hover .__btn-red {
+                bottom: 0;
+                left: 0;
+            }
+    
+            &:hover .__grid-card-btn-round {
+                right: 10px;
+                top: 5px;
+            }
+            
+    
+            .__btn-red {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: -100px;
+                transition: 250ms ease-in-out;
+            }
+    
+            .__grid-card-btn-round {
+                position: absolute;
+                right: 10px;
+                top: 250px;
+                display: flex;
+                flex-direction: column;
+                transition: 250ms ease-in-out;
+    
+                .__round-button {
+                    margin-top: .5rem;
+                }
+            }
+        
+        }
+    }
+
+
+    .__display-card {
+        .__display-card-image {
+            .__display-card-buttons {
+                position: absolute;
+                top: 250px;
+                height: 100%;
+                width: 100%;
+                background-color: $color-gray-6;
+                opacity: 90%;
+                transition: 250ms ease-in-out;
+            }
+    
+            &:hover .__display-card-buttons {
+                top: 0;
+            }
+    
+            &:hover .__btn-red {
+                bottom: 0;
+                left: 0;
+            }
+    
+            &:hover .__display-card-btn-round {
+                right: 10px;
+                top: 5px;
+            }
+            
+    
+            .__btn-red {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: -100px;
+                transition: 250ms ease-in-out;
+            }
+    
+            .__display-card-btn-round {
+                position: absolute;
+                right: 10px;
+                top: 250px;
+                display: flex;
+                flex-direction: column;
+                transition: 250ms ease-in-out;
+    
+                .__round-button {
+                    margin-top: .5rem;
+                }
+            }
+        
+        }
+    }
+}

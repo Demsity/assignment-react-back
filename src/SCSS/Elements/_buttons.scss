@@ -1,0 +1,169 @@
+.__round-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-white-1;
+    border-radius: $border-radius-round;
+    padding: .3rem;
+    position: relative;
+    transition: 100ms ease-in-out;
+    box-shadow: 0 0 .5rem .1rem $color-white-2;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    margin: 0 1rem;
+    border: none;
+
+    &:hover {
+        background-color: $color-black-1;
+        color: $color-white-1;
+
+    }
+
+    
+}
+
+.__badge-pill {
+    position: absolute;
+    font-size: 11px;
+    font-weight: $font-weight-meduim;
+    color: $color-white-1;
+    background-color: $color-red-1;
+    border-radius: $border-radius-round;
+    top: -5px;
+    right: -8px;
+
+}
+
+.__btn-red {
+    background-color: $color-red-1;
+    border: none;
+    padding: 1rem 2rem;
+    color: $color-white-1;
+    position: relative;
+    transition: background-color 100ms ease-in-out;
+
+    &:hover {
+        background-color: $color-black-1;
+        color: $color-white-1;
+    }
+
+    &::before {
+        content: '  ';
+        position: absolute;
+        display: block;
+        border: 1px solid;
+        border-right: 0;
+        border-bottom: 0;
+        color: $color-white-1;
+        width: 20px;
+        height: 20px;
+        top: 10px;
+        left: 10px;
+
+    }
+    &::after {
+        content: '  ';
+        position: absolute;
+        display: block;
+        border: 1px solid;
+        border-left: 0;
+        border-top: 0;
+        color: $color-white-1;
+        width: 20px;
+        height: 20px;
+        bottom: 10px;
+        right: 10px;
+
+    }
+}
+.__btn-black {
+    background-color: $color-black-1;
+    border: none;
+    padding: 1rem 2rem;
+    color: $color-white-1;
+    position: relative;
+    transition: background-color 100ms ease-in-out;
+
+    &:hover {
+        background-color: $color-white-1;
+        color: $color-black-1;
+
+        &::before {color: $color-black-1;}
+        &::after {color: $color-black-1;}
+    }
+
+    &::before {
+        content: '  ';
+        position: absolute;
+        display: block;
+        border: 1px solid;
+        border-right: 0;
+        border-bottom: 0;
+        color: $color-white-1;
+        width: 20px;
+        height: 20px;
+        top: 10px;
+        left: 10px;
+
+    }
+    &::after {
+        content: '  ';
+        position: absolute;
+        display: block;
+        border: 1px solid;
+        border-left: 0;
+        border-top: 0;
+        color: $color-white-1;
+        width: 20px;
+        height: 20px;
+        bottom: 10px;
+        right: 10px;
+
+    }
+}
+.__btn-white {
+    background-color: $color-white-1;
+    border: none;
+    padding: 1rem 2rem;
+    color: $color-black-1;
+    position: relative;
+    transition: 100ms ease-in-out;
+
+    &:hover {
+        background-color: $color-black-1;
+        color: $color-white-1;
+
+        &::before {color: $color-white-1;}
+        &::after {color: $color-white-1;}
+    }
+
+    &::before {
+        content: '  ';
+        position: absolute;
+        display: block;
+        border: 1px solid;
+        border-right: 0;
+        border-bottom: 0;
+        color: $color-black-1;
+        width: 20px;
+        height: 20px;
+        top: 10px;
+        left: 10px;
+
+    }
+    &::after {
+        content: '  ';
+        position: absolute;
+        display: block;
+        border: 1px solid;
+        border-left: 0;
+        border-top: 0;
+        color: $color-black-1;
+        width: 20px;
+        height: 20px;
+        bottom: 10px;
+        right: 10px;
+
+    }
+}

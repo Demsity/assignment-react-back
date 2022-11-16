@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+// Site colors 
+$theme-color: #E6E6E6;
+$theme-color-dark: #222529;
+
+$color-gray-1: #707070; 
+$color-gray-2: #7E7F80;
+$color-gray-3: #BBBBBB;
+$color-gray-4: #EFEFEF;
+$color-gray-5: #D9D9D9;
+$color-gray-6: #E8E8E8;
+
+$color-white-1: #ffffff;
+$color-white-2: #F5F5F5;
+$color-white-3: #F8F8F8;
+
+$color-black-1: #23262A;
+
+$color-red-1: #FF7373;
+
+$color-brown-1: #CAC0BE; 
+$color-brown-2: #75695C; 
+
+// Site Fonts
+$font-poppins: 'Poppins', sans-serif;
+
+// Font Weight
+$font-weight-regular: 400;
+$font-weight-meduim: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-x-bold: 800;
+
+// Font size
+$font-size-13: 0.8125rem;
+$font-size-16: 1rem;
+$font-size-18: 1.125rem;
+$font-size-20: 1.25rem;
+$font-size-35: 2.1875rem;
+$font-size-45: 2.8125rem;
+$font-size-65: 4.0625rem;
+
+// Border radius
+$border-radius-round: 50%;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-sm-max-width: 536px;
+$breakpoint-md: 768px;
+$breakpoint-md-max-width: 720px;
+$breakpoint-lg: 992px;
+$breakpoint-lg-max-width: 950px;
+$breakpoint-xl: 1200px;
+$breakpoint-xl-max-width: 1100px;
+$breakpoint-xxl: 1450px;
+$breakpoint-xxl-max-width: 1400px;
+$breakpoint-uxxl: 1600px;
+$breakpoint-uxxl-max-width: 1550px;
+@import './breakpoints'

@@ -1,0 +1,18 @@
+
+.__breadcrumbs{
+    margin-top: 120px;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 1110px;
+
+    .__BC-index {
+        font-weight: $font-weight-meduim;
+        font-size: $font-size-16;
+    }
+
+
+    .__active {
+        color: $color-red-1;
+    }
+
+}

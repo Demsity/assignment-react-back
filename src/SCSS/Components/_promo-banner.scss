@@ -1,0 +1,11 @@
+.__promo-banner {
+    display: none;
+}
+
+@include xxl {
+    .__promo-banner {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3rem;
+    }
+}

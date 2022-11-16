@@ -1,0 +1,27 @@
+.__display-container {
+    max-width: 1110px;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+
+
+    h3 {
+        font-size: $font-size-20;
+        font-weight: $font-weight-bold;
+        margin-top: 2rem;
+    }
+}
+
+@include lg {
+    .__display-container {
+        max-width: 1110px;
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: row;
+    
+        h3 {
+            font-size: $font-size-20;
+            font-weight: $font-weight-bold;
+        }
+    }
+}

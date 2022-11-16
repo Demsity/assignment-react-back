@@ -1,0 +1,30 @@
+.__searchbar {
+    width: 600px !important;
+    height: 100%;
+
+    .__searchbar-body{
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        .__query-products {
+            max-width: 1110px;
+            display: grid;
+            grid-gap: 1rem;
+            grid-template-columns: auto;
+        }
+    }
+}
+
+@include lg {
+    .__searchbar {
+        .__searchbar-body {
+            .__query-products {
+                grid-template-columns: auto auto;
+            }
+        }
+    }
+}

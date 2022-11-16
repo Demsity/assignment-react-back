@@ -1,0 +1,101 @@
+.__shoppingcart {
+    width: 100% !important;
+
+    .__purchase-btn {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .__btn-black {
+            width: 400px;
+        }
+    }
+}
+
+@include xxl {
+    .__shoppingcart {
+        width: 600px !important;
+    }
+}
+
+.__cart-item-container {
+    margin-top: 2rem;
+    justify-content: space-between;
+    .__cart-item-img {
+        
+        img {
+            width: 100px;
+        }
+    }
+
+    .__cart-item-name-and-counter {
+
+        h3 {
+            font-size: $font-size-20;
+            font-weight: $font-weight-semibold;
+        }
+
+        flex: 3;
+        margin-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .__counter {
+            display: flex;
+            button {
+                width: 30px;
+                height: 40px;
+                border: 1px solid $theme-color-dark;
+                outline: none;
+                background-color: $color-white-1;
+                transition: 100ms ease-in-out;
+
+                &:hover {
+                    background-color: $color-gray-4;
+                }
+
+                &:active {
+                    background-color: $color-gray-1;
+                }
+            }
+            .__count {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 50px;
+                height: 40px;
+                border-top: 1px solid $theme-color-dark;
+                border-bottom: 1px solid $theme-color-dark;
+            }
+        }
+    }
+
+    .__cart-item-price-and-remove {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        span {
+            font-size: $font-size-20;
+            font-weight: $font-weight-semibold;
+
+        }
+
+        .__cart-item-remove {
+            background-color: none;
+            button {
+                background-color: white;
+                border: none;
+                color: $theme-color-dark;
+                font-size: $font-size-20;
+                transition: 100ms ease-in-out;
+            
+                &:hover {
+                    color: $color-red-1;
+                }
+            }
+        }
+    }
+}

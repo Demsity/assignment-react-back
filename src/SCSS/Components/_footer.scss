@@ -1,0 +1,21 @@
+.__footer {
+    background-color: $color-white-3;
+    margin-top: 5rem;
+
+    .__footer-container {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .__footer-links {
+
+        a {
+            margin: .7rem;
+            font-size: $font-size-18;
+        }
+    }
+
+    .__footer-text {
+        margin-top: 1rem;
+    }
+}

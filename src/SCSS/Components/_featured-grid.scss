@@ -1,0 +1,41 @@
+h2 {
+    font-size: $font-size-20;
+    font-weight: $font-weight-bold;
+}
+
+.__grid-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+
+
+    .__grid {
+        display: grid;
+        grid-gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(1, 1fr);
+        margin-top: 1rem;
+    }
+
+}
+
+@include md {
+    .__grid-container {
+
+        .__grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    
+    }
+}
+@include xl {
+    .__grid-container {
+        .__grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    
+    }
+}

@@ -1,0 +1,84 @@
+.__form-container {
+    max-width: 1110px;
+    margin-top: 3rem;
+
+    .__succsess {
+        flex-direction: column;
+    }
+
+    .__form {
+        display: grid;
+        width: 100%;
+        grid-gap: 1.5rem;
+        grid-template-areas: 
+        'title title title title'
+        'form1 form1 form1 form1'
+        'form2 form2 form2 form2'
+        'form3 form3 form3 form3'
+        ;
+
+        h3 {
+            font-size: $font-size-18;
+            font-weight: $font-weight-bold;
+        }
+
+
+        input, textarea {
+            width: 100%;
+            padding: .5rem;
+            border: 1px solid $color-gray-1;
+
+            &:focus {
+                outline: none;
+                box-shadow: 2px 2px 5px 0 $color-black-1;
+            }
+
+            &:hover {
+                outline: none;
+                border: 1px solid $color-gray-1;
+            }
+        }
+
+        .__form-title {
+            grid-area: title;
+
+        }
+
+        .__form1 {
+            grid-area: form1;
+        }
+
+        .__form2 {
+            grid-area: form2;
+        }
+
+        .__form3 {
+            grid-area: form3;
+            width: 100%;
+
+            textarea {
+                height: 160px;
+            }
+
+        }
+
+        .__text-error {
+            color: $color-red-1;
+            font-weight: $font-weight-regular;
+            font-size: $font-size-13;
+        }
+    }
+
+}
+
+@include xxl {
+    .__form-container {
+        .__form {
+            grid-template-areas: 
+            'title title title title'
+            'form1 form1 form2 form2'
+            'form3 form3 form3 form3'
+            ;
+        }
+    }
+}

@@ -1,0 +1,128 @@
+// Design Mobile
+.__navbar-container {
+    justify-content: space-around;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: none;
+    position: fixed;
+    height: 80px;
+    top: 0;
+    z-index: 100;
+
+    .__navbar-wrapper {
+        display: grid;
+        position: relative;
+        grid-gap: .5rem;
+        grid-template-areas: 
+        'title userint'
+        'links links';
+        
+    }
+
+    .__navbar-logo {
+        font-size: $font-size-35;
+        font-weight: $font-weight-bold;
+        grid-area: title;
+        flex: 1;
+
+        &:hover {
+            font-size: $font-size-35;
+            font-weight: $font-weight-bold;
+            color: $theme-color-dark;
+        }
+    }
+
+    .__navbar-links {
+        display: flex;
+        position: absolute;
+        top: 10px;
+        right: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        grid-area: links;
+        background-color: $color-white-1;
+        transition: 250ms ease-in-out;
+        flex: 1;
+        
+        
+        .__navbar-link {
+            font-size: $font-size-16;
+            font-weight: $font-weight-meduim;
+            margin: 1 1rem;
+            padding: 1rem;            
+
+            &:hover {
+                color: $color-red-1;
+            }
+        }
+
+        .__link-active {
+            color: $color-red-1;
+            font-size: $font-size-16;
+            font-weight: $font-weight-meduim;
+            margin: 0 1rem;
+            &:hover {
+                color: $theme-color-dark;
+            }
+        }
+
+        .active {
+            color: $color-red-1;
+        }
+    }
+
+
+    .hiddenOnMobile {
+        display: none;
+    }
+
+    .__user-interface {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+        grid-area: userint;
+
+
+    }
+}
+
+@include md {
+
+    .__navbar-container {
+            .__navbar-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+    
+            .__hide-menu {
+                display: none;
+            }
+    
+            .__navbar-links {
+                position: relative;
+                flex-direction: row;
+                background-color: transparent;
+            }
+    
+        }
+    }
+
+@include lg {
+
+    .__navbar-container {
+
+        .hiddenOnMobile {
+            display: flex;
+        }
+
+        .__navbar-links {
+            background-color: transparent;
+        }
+    }
+}
+
