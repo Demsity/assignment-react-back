@@ -1,11 +1,12 @@
 import React from 'react'
 import ButtonSquare from '../Elements/ButtonSquare'
 import FeaturedGrid from '../Components/FeaturedGrid'
+import { ProductInterface } from '../Utilities/Interfaces'
 
 interface SaleGridProps {
-    img: string
-    imgRight: boolean
-    products: []
+    img?: string
+    imgRight?: boolean
+    products: ProductInterface[]
 }
 
 
@@ -16,8 +17,8 @@ function SaleGrid( { img, imgRight, products }:SaleGridProps ) {
         return (
             <div className='container __sale-grid'>
                 <div className='__sale-grids-right'>
-                    <FeaturedGrid gridNr={2} products={products}  />
-                    <FeaturedGrid gridNr={2} products={products} />
+                    <FeaturedGrid title=''  products={products} />
+                    <FeaturedGrid title=''  products={products} />
                 </div>
                 <div className='__sale-img'>
                     <img src={img} alt="" />
@@ -35,8 +36,8 @@ function SaleGrid( { img, imgRight, products }:SaleGridProps ) {
                     <ButtonSquare title='FLASH SALE' color='__btn-white' />
                 </div>
                 <div className='__sale-grids'>
-                    <FeaturedGrid gridNr={2} products={products} />
-                    <FeaturedGrid gridNr={2} products={products}/>
+                    <FeaturedGrid title=''  products={products} />
+                    <FeaturedGrid title=''  products={products} />
                 </div>
                 
             </div>

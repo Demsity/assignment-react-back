@@ -53,8 +53,8 @@ const Navbar = () => {
             <button className={'__round-button'} type='button' data-bs-toggle="offcanvas" data-bs-target={'#search'} aria-controls={'search'} >
               <i className='fa-regular fa-magnifying-glass'></i>
             </button>
-            <ButtonRound hideOnMobile={true} link='/compare' icon='fa-light fa-code-compare'  />
-            <ButtonRound hideOnMobile={true} link='/favorites' icon='fa-light fa-heart' badge='1' />
+            <ButtonRound hideOnMobile={true} icon='fa-light fa-code-compare'  />
+            <ButtonRound hideOnMobile={true} icon='fa-light fa-heart' />
             <button className={'__round-button'} type='button' data-bs-toggle="offcanvas" data-bs-target={'#cart'} aria-controls={'cart'} >
               <i className='fa-light fa-bag-shopping'></i>
               <span className='badge badge-pill badge-danger __badge-pill'>{cartQuantity}</span>

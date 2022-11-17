@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
-import Product from '../Products/Product'
-import Breadcrumbs from '../Breadcrumbs/Breadcrumbs'
-import Footer from '../Footer/Footer'
-import Navbar from '../Navbar/Navbar'
+import Product from '../Components/Product'
+import Breadcrumbs from '../Components/BreadCrumbs'
+import Footer from '../Components/Footer'
+import Navbar from '../Components/Navbar'
 import { useParams, useLocation } from 'react-router-dom'
-import { useProducts } from '../Context/ProductsContext'
-import FeaturedGrid from '../FeaturedGrid/FeaturedGrid'
+import { useProducts } from '../Contexts/ProductsContext'
+import FeaturedGrid from '../Components/FeaturedGrid'
 
 function ProductViewSingle() {
-  const productId = useParams()
+  const productId:any = useParams()
   const { product, getProduct, gridProducts, getGridProducts } = useProducts()
   let location = useLocation()
 

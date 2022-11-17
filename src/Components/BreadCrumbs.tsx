@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 interface BreadcrumbsProps {
   page: string
-  prevPage: string
+  prevPage?: string
 }
 
 function Breadcrumbs({ page, prevPage }:BreadcrumbsProps) {

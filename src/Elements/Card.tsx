@@ -3,13 +3,13 @@ import ButtonSquare from '../Elements/ButtonSquare'
 
 interface CardProps {
   title: string
-  par: string
+  par?: string
   btnText: string
   btnColor: string
   img: string
   imgAlt: string
   classes: string
-  imgLeft: boolean
+  imgLeft?: boolean
 }
 
 const Card = ({title, par, btnText, btnColor, img, imgAlt, classes, imgLeft}:CardProps) => {

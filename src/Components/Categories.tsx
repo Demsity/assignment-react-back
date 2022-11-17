@@ -3,9 +3,17 @@ import Breadcrumbs from '../Components/BreadCrumbs'
 import GridCategoryCard from '../Elements/GridCategoryCard'
 import { ProductInterface } from '../Utilities/Interfaces'
 
-function Categories(products) {
+interface ICategoriesProps {
+  products: ProductInterface[]
+}
+
+
+
+
+
+function Categories( {products}:ICategoriesProps ) {
   // Get all the categorys from API products
-  const categorires = [...new Set(products.products.map(item => item.category))]
+  const categorires = [...new Set(products.map(item => item.category)) ]
   return (
     <>
       <Breadcrumbs page='categories' />

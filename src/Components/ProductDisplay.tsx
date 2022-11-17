@@ -1,7 +1,12 @@
 import React from 'react'
 import DisplayCard from '../Elements/DisplayCard'
+import { ProductInterface } from '../Utilities/Interfaces'
 
-function ProductDisplay( { products } ) {
+interface IProductDisplay {
+    products: ProductInterface[]
+}
+
+function ProductDisplay( { products }:IProductDisplay ) {
     
   return (
     <div className='__display-container container '>

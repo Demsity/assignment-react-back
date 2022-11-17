@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import Breadcrumbs from '../Breadcrumbs/Breadcrumbs'
-import { useProducts } from '../Context/ProductsContext'
-import FeaturedGrid from '../FeaturedGrid/FeaturedGrid'
-import Footer from '../Footer/Footer'
-import Navbar from '../Navbar/Navbar'
+import Breadcrumbs from '../Components/BreadCrumbs'
+import { useProducts } from '../Contexts/ProductsContext'
+import FeaturedGrid from '../Components/FeaturedGrid'
+import Footer from '../Components/Footer'
+import Navbar from '../Components/Navbar'
 
 function ProductView() {
 

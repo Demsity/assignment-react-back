@@ -6,4 +6,5 @@ export interface ProductInterface {
     price: number
     rating: number
     imageName: string
+    quantity?: number
 }

@@ -6,6 +6,7 @@ interface ValidateI {
 
 
 
+
 // Validate form
 
 export const validate =(values: ValidateI)=> {
@@ -41,7 +42,7 @@ const validateEmail = (email:string) => {
 }
 
 // Submit form to API
-export const submitData = (url, method, data, contentType = 'application/json') => {
+export const submitData = (url: string, method: string, data: string, contentType = 'application/json') => {
     fetch(url, {
         method: method, 
         headers: {

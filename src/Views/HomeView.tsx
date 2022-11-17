@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
-import { useProducts } from '../Context/ProductsContext'
-import FeaturedGrid from '../FeaturedGrid/FeaturedGrid'
-import FlashSale from '../FlashSale/FlashSale'
-import Footer from '../Footer/Footer'
-import Navbar from '../Navbar/Navbar'
-import NewsBanner from '../NewsBanner/NewsBanner'
-import OurSpeciality from '../OurSpeciality/OurSpeciality'
-import ProductDisplay from '../ProductDisplay/ProductDisplay'
-import PromoBanner from '../PromoBanner/PromoBanner'
-import SaleGrid from '../SaleGrid/SaleGrid'
-import Showcase from '../Showcase/Showcase'
-import SiteInfo from '../SiteInfo/SiteInfo'
+import { useProducts } from '../Contexts/ProductsContext'
+import FeaturedGrid from '../Components/FeaturedGrid'
+import FlashSale from '../Components/FlashSale'
+import Footer from '../Components/Footer'
+import Navbar from '../Components/Navbar'
+import NewsBanner from '../Components/NewsBanner'
+import OurSpeciality from '../Components/OurSpeciality'
+import ProductDisplay from '../Components/ProductDisplay'
+import PromoBanner from '../Components/PromoBanner'
+import SaleGrid from '../Components/SaleGrid'
+import Showcase from '../Components/Showcase'
+import SiteInfo from '../Components/SiteInfo'
 
 function HomeView() {
   const { gridProducts, getGridProducts } = useProducts()
@@ -25,7 +25,7 @@ function HomeView() {
         <Navbar />
         <Showcase />
         <PromoBanner />
-        <FeaturedGrid title='Featured Products' gridNr={8} products={gridProducts} />
+        <FeaturedGrid title='Featured Products' products={gridProducts} />
         <NewsBanner />
         <OurSpeciality />
         {/* made a .slice due to API limitations, maybe fix later */}

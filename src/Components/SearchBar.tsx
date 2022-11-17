@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import GridCard from '../Elements/GridCard'
 import { useProducts } from '../Contexts/ProductsContext'
+import { ProductInterface } from '../Utilities/Interfaces'
 
 function SearchBar() {
     const [query, setQuery] = useState("")
@@ -13,7 +14,7 @@ function SearchBar() {
     }, [])
 
     // search products and return those matching query
-    const search = (data) => {
+    const search = (data: ProductInterface[]) => {
         return data.filter((item) => 
         item.name.toLowerCase().includes(query) || 
         item.category.toLowerCase().includes(query) 

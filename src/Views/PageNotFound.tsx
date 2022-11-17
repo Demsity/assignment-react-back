@@ -1,6 +1,6 @@
 import React from 'react'
-import Footer from '../Footer/Footer'
-import Navbar from '../Navbar/Navbar'
+import Footer from '../Components/Footer'
+import Navbar from '../Components/Navbar'
 
 function PageNotFound() {
   return (

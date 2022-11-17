@@ -1,9 +1,10 @@
 import React from 'react'
 import GridCard from '../Elements/GridCard'
+import { ProductInterface } from '../Utilities/Interfaces'
 
 interface FeaturedGridProps {
     title: string
-    products: []
+    products: ProductInterface[]
 }
 
 function FeaturedGrid( {title, products}:FeaturedGridProps ) {

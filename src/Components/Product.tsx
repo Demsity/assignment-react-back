@@ -2,8 +2,29 @@ import React, { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid'
 import { useCart } from '../Contexts/CartContext';
+import { ProductInterface } from '../Utilities/Interfaces';
 
-function Product( { product } ) {
+interface IProductProps {
+    product: ProductInterface
+}
+
+interface ISyntheticEvent<T> {
+    bubbles: boolean;
+    cancelable: boolean;
+    currentTarget: EventTarget;
+    defaultPrevented: boolean;
+    eventPhase: number;
+    isTrusted: boolean;
+    nativeEvent: Event;
+    preventDefault(): void;
+    stopPropagation(): void;
+    target: EventTarget;
+    timeStamp: Date;
+    type: string;
+}
+
+
+function Product( { product }:IProductProps ) {
     const [amount, setAmount] = useState(1)
     const { incrementQuantity } = useCart()
 
@@ -19,14 +40,15 @@ function Product( { product } ) {
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e:React.FormEvent<EventTarget>) => {
         e.preventDefault()
     }
 
     // ignoring color and size for now, due quick add to cart button on productcard
-    const addToCart = (item:[]) => {
-        const itemQuantity = document.getElementById('__amount').innerText
-        incrementQuantity(item, Number(itemQuantity))
+    // Fix input number add to cart !Important
+    const addToCart = (item:ProductInterface) => {
+        const itemQuantity = document.getElementById('__amount')?.innerText
+        incrementQuantity(item.articleNumber)
     }
 
 
@@ -67,7 +89,7 @@ function Product( { product } ) {
                             
                             <form onSubmit={handleSubmit}>
                                 <div id='size'>
-                                    <label className='__product-form-label' name='size'>Size:</label>
+                                    <label className='__product-form-label'>Size:</label>
                                     <div className='__radio'>
                                         <input name='size' id='size-s' value='s' type="radio" />
                                         <label htmlFor='size-s'><p>S</p></label>
@@ -86,13 +108,13 @@ function Product( { product } ) {
                                     </div>
                                 </div>
                                 <div id='color'>
-                                <label className='__product-form-label' name='color'>Color:</label>
+                                <label className='__product-form-label'>Color:</label>
                                 <select defaultValue='' className='__select-color' name='color'>
                                     <option value="" disabled>Choose an Option</option>
-                                    <option name='color' value="Red">Red</option>
-                                    <option name='color' value="blue">Blue</option>
-                                    <option name='color' value="green">Green</option>
-                                    <option name='color' value="yellow">Yellow</option>
+                                    <option value="Red">Red</option>
+                                    <option value="blue">Blue</option>
+                                    <option value="green">Green</option>
+                                    <option value="yellow">Yellow</option>
                                 </select>
                                 </div>
                                 <div id='qty'>

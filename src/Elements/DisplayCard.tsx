@@ -23,7 +23,7 @@ function DisplayCard( { products, path }:DisplayCardProps ) {
             <div className="__display-card-btn-round">
                 <ButtonRound icon='fa-light fa-code-compare'  />
                 <ButtonRound icon='fa-light fa-heart' />
-                <button className='__round-button' onClick={() => incrementQuantity(products)} >
+                <button className='__round-button' onClick={() => incrementQuantity(products.articleNumber)} >
                     <i className='fa-light fa-bag-shopping'></i>
                 </button>
             </div>

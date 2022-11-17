@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import GridCard from '../Cards/GridCard'
-import Footer from '../Footer/Footer'
-import Navbar from '../Navbar/Navbar'
+import GridCard from '../Elements/GridCard'
+import Footer from '../Components/Footer'
+import Navbar from '../Components/Navbar'
 import { useLocation } from 'react-router-dom'
-import Breadcrumbs from '../Breadcrumbs/Breadcrumbs'
-import { useProducts } from '../Context/ProductsContext'
+import Breadcrumbs from '../Components/BreadCrumbs'
+import { useProducts } from '../Contexts/ProductsContext'
 
 function CategoriesViewSingle( ) {
     const { products, getProducts } = useProducts()

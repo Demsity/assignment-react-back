@@ -1,9 +1,9 @@
 import React from 'react'
-import Breadcrumbs from '../Breadcrumbs/Breadcrumbs'
-import ContactForm from '../ContactForm/ContactForm'
-import Footer from '../Footer/Footer'
-import Map from '../Map/Map'
-import Navbar from '../Navbar/Navbar'
+import Breadcrumbs from '../Components/BreadCrumbs'
+import ContactForm from '../Components/ContactForm'
+import Footer from '../Components/Footer'
+import Map from '../Components/Map'
+import Navbar from '../Components/Navbar'
 
 function ContactView() {
   return (
