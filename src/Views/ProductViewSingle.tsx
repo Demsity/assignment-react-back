@@ -24,7 +24,7 @@ function ProductViewSingle() {
   return  (
     <>
       <Navbar />
-      <Breadcrumbs page={product.name} prevPage='product' />
+      <Breadcrumbs page={product!.name} prevPage='product' />
       <Product product={product} />
       <FeaturedGrid title='Related Products' products={gridProducts} />
       <Footer />

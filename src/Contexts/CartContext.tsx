@@ -1,7 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode }  from "react";
-import { isTemplateExpression } from "typescript";
 import Cart from "../Components/Cart"
-import { ProductInterface } from '../Utilities/Interfaces'
 
 
 interface ICartContext {
@@ -48,7 +46,7 @@ export const CartProvider = ({children}:CartProviderProps) => {
 
     // get the quantity of a single procut
     function getItemQuantity(articleNumber: string) {
-        return cartItems.find(item => item.articleNumber === articleNumber)?.quantity || 0
+        return cartItems.find(item => item.articleNumber === articleNumber)!.quantity || 0
     }
 
     // increment the product quantity in the shoppingcart
@@ -72,7 +70,7 @@ export const CartProvider = ({children}:CartProviderProps) => {
     // decrement the product quantity in the shoppingcart
     const decrementQuantity = (articleNumber: string) => {
         setCartItems(currItems => {
-            if (currItems.find(item => item.articleNumber === articleNumber)?.quantity === 1) {
+            if (currItems.find(item => item.articleNumber === articleNumber)!.quantity === 1) {
                 return currItems.filter(item => item.articleNumber !== articleNumber)
             } else {
                 return currItems.map(item => {
@@ -96,8 +94,7 @@ export const CartProvider = ({children}:CartProviderProps) => {
     }
 
 
-    return 
-    (
+    return (
         <CartContext.Provider value={{ cartItems, cartQuantity, getItemQuantity, incrementQuantity, decrementQuantity, removeItem }}>
             {children}
             <Cart />

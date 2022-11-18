@@ -5,22 +5,7 @@ import { useCart } from '../Contexts/CartContext';
 import { ProductInterface } from '../Utilities/Interfaces';
 
 interface IProductProps {
-    product: ProductInterface
-}
-
-interface ISyntheticEvent<T> {
-    bubbles: boolean;
-    cancelable: boolean;
-    currentTarget: EventTarget;
-    defaultPrevented: boolean;
-    eventPhase: number;
-    isTrusted: boolean;
-    nativeEvent: Event;
-    preventDefault(): void;
-    stopPropagation(): void;
-    target: EventTarget;
-    timeStamp: Date;
-    type: string;
+    product: ProductInterface |undefined
 }
 
 
@@ -45,14 +30,14 @@ function Product( { product }:IProductProps ) {
     }
 
     // ignoring color and size for now, due quick add to cart button on productcard
-    // Fix input number add to cart !Important
+    // Fix input number add to cart
     const addToCart = (item:ProductInterface) => {
-        const itemQuantity = document.getElementById('__amount')?.innerText
+        const itemQuantity = document.getElementById('__amount')!.innerText
         incrementQuantity(item.articleNumber)
     }
 
 
-    if (Object.keys(product).length === 0){
+    if (Object.keys(product!).length === 0){
         return (<div>Something went wrong</div>)
     } else {
         return (
@@ -61,30 +46,30 @@ function Product( { product }:IProductProps ) {
                     <div className='container __product-container'>
                         <div className='__product-grid'>
                             <div className='__img-wrapper'>
-                                <img className='__img-big' src={product.imageName} alt={product.name} />
+                                <img className='__img-big' src={product!.imageName} alt={product!.name} />
                                 <div className='__img-small-wrapper'>
-                                    <img className='__img-small' src={product.imageName} alt={product.name} />
-                                    <img className='__img-small' src={product.imageName} alt={product.name} />
-                                    <img className='__img-small' src={product.imageName} alt={product.name} />
+                                    <img className='__img-small' src={product!.imageName} alt={product!.name} />
+                                    <img className='__img-small' src={product!.imageName} alt={product!.name} />
+                                    <img className='__img-small' src={product!.imageName} alt={product!.name} />
                                 </div>
                             </div>
                             <div className='__text-wrapper'>
                                 <div className='__product-grid-text'>
-                                    <h3 className='__product-name'>{product.name}</h3>
+                                    <h3 className='__product-name'>{product!.name}</h3>
                                     <div className='__product-details'>
-                                        <p>sku: {product.articleNumber}</p>
+                                        <p>sku: {product!.articleNumber}</p>
                                         <p>Brand: northland</p>
                                     </div> 
                                     <div className='__product-rating'>
                                         {
                                             // create array from rating value and render star for each
-                                            Array(product.rating).fill(0).map(item => <i key={uuidv4()} className="fa-sharp fa-solid fa-star-sharp"></i>)
+                                            Array(product!.rating).fill(0).map(item => <i key={uuidv4()} className="fa-sharp fa-solid fa-star-sharp"></i>)
                                         }
                                     </div>
                                     <div className='__product-price'>
-                                        <p className='__product-discountprice'>{`$${product.price}`}</p>
+                                        <p className='__product-discountprice'>{`$${product!.price}`}</p>
                                     </div>
-                                    <p className='__product-summary'>{product.description === '' ? 'Discovered had get considered projection who favourable. Necessary up knowledge it tolerably. Unwilling departure education is be dashwoods or an. Use off agreeable law unwilling sir deficient curiosity instantly. (read more) ' : `${product.description}` } </p>
+                                    <p className='__product-summary'>{product!.description === '' ? 'Discovered had get considered projection who favourable. Necessary up knowledge it tolerably. Unwilling departure education is be dashwoods or an. Use off agreeable law unwilling sir deficient curiosity instantly. (read more) ' : `${product!.description}` } </p>
                                 </div>
                             
                             <form onSubmit={handleSubmit}>
@@ -123,7 +108,7 @@ function Product( { product }:IProductProps ) {
                                     <div id='__amount'>{amount}</div>
                                     <button id='increment' type='button' onClick={incrementValue} className='__increment'>+</button>
                                 </div>
-                                <button type='button' onClick={() => addToCart(product)} id='btn' className='__btn-red'>ADD TO CART</button>
+                                <button type='button' onClick={() => addToCart(product!)} id='btn' className='__btn-red'>ADD TO CART</button>
                                 <div id='share'>
                                     <p className='__product-form-label'>Share:</p>
                                     <div className='__share-icons'>
