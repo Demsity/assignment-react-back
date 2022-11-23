@@ -5,10 +5,10 @@ import Cart from "../Components/Cart"
 interface ICartContext {
     cartItems: ICartItems[]
     cartQuantity: number
-    getItemQuantity: (articleNumber: string) => number
-    incrementQuantity: (articleNumber: string) => void
-    decrementQuantity: (articleNumber: string) => void
-    removeItem: (articleNumber: string) => void
+    getItemQuantity: (articleNumber: number) => number
+    incrementQuantity: (articleNumber: number) => void
+    decrementQuantity: (articleNumber: number) => void
+    removeItem: (articleNumber: number) => void
 }
 
 interface CartProviderProps {
@@ -16,7 +16,7 @@ interface CartProviderProps {
 }
 
 interface ICartItems {
-    articleNumber: string
+    articleNumber: number
     name?: string
     description?: string
     category?: string
@@ -45,12 +45,12 @@ export const CartProvider = ({children}:CartProviderProps) => {
     )
 
     // get the quantity of a single procut
-    function getItemQuantity(articleNumber: string) {
+    function getItemQuantity(articleNumber: number) {
         return cartItems.find(item => item.articleNumber === articleNumber)!.quantity || 0
     }
 
     // increment the product quantity in the shoppingcart
-   const incrementQuantity = (articleNumber: string, inputAmount = 1) => {
+   const incrementQuantity = ( articleNumber: number, inputAmount = 1) => {
         setCartItems(currItems => {
             if (currItems.find(item => item.articleNumber === articleNumber) == null) {
                 return [...currItems, {articleNumber, quantity: 1}]
@@ -68,7 +68,7 @@ export const CartProvider = ({children}:CartProviderProps) => {
     }
 
     // decrement the product quantity in the shoppingcart
-    const decrementQuantity = (articleNumber: string) => {
+    const decrementQuantity = (articleNumber: number) => {
         setCartItems(currItems => {
             if (currItems.find(item => item.articleNumber === articleNumber)!.quantity === 1) {
                 return currItems.filter(item => item.articleNumber !== articleNumber)
@@ -87,7 +87,7 @@ export const CartProvider = ({children}:CartProviderProps) => {
 
 
     // remove product from cart
-    const removeItem = (articleNumber: string) => {
+    const removeItem = (articleNumber: number) => {
         setCartItems(items => {
             return items.filter(item => item.articleNumber !== articleNumber)
         })

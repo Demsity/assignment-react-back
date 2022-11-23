@@ -1,5 +1,5 @@
 export interface ProductInterface {
-    articleNumber: string
+    articleNumber: number
     name: string
     description: string
     category: string

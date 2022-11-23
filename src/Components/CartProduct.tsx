@@ -5,7 +5,7 @@ interface CartProductProps {
   name?: string
   price?: number
   img?: string
-  articleNumber: string
+  articleNumber: number
 }
 
 function CartProduct({ name, price, img, articleNumber }:CartProductProps) {

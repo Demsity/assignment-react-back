@@ -36,9 +36,10 @@ function Product( { product }:IProductProps ) {
         incrementQuantity(item.articleNumber)
     }
 
+    console.log(product)
 
-    if (Object.keys(product!).length === 0){
-        return (<div>Something went wrong</div>)
+    if (product === undefined){
+        return (<div className='container mt-5'>Something went wrong</div>)
     } else {
         return (
             <>
@@ -46,18 +47,18 @@ function Product( { product }:IProductProps ) {
                     <div className='container __product-container'>
                         <div className='__product-grid'>
                             <div className='__img-wrapper'>
-                                <img className='__img-big' src={product!.imageName} alt={product!.name} />
+                                <img className='__img-big' src={product.imageName} alt={product!.name} />
                                 <div className='__img-small-wrapper'>
-                                    <img className='__img-small' src={product!.imageName} alt={product!.name} />
-                                    <img className='__img-small' src={product!.imageName} alt={product!.name} />
-                                    <img className='__img-small' src={product!.imageName} alt={product!.name} />
+                                    <img className='__img-small' src={product.imageName} alt={product.name} />
+                                    <img className='__img-small' src={product.imageName} alt={product.name} />
+                                    <img className='__img-small' src={product.imageName} alt={product.name} />
                                 </div>
                             </div>
                             <div className='__text-wrapper'>
                                 <div className='__product-grid-text'>
-                                    <h3 className='__product-name'>{product!.name}</h3>
+                                    <h3 className='__product-name'>{product.name}</h3>
                                     <div className='__product-details'>
-                                        <p>sku: {product!.articleNumber}</p>
+                                        <p>sku: {product.articleNumber}</p>
                                         <p>Brand: northland</p>
                                     </div> 
                                     <div className='__product-rating'>
@@ -67,9 +68,9 @@ function Product( { product }:IProductProps ) {
                                         }
                                     </div>
                                     <div className='__product-price'>
-                                        <p className='__product-discountprice'>{`$${product!.price}`}</p>
+                                        <p className='__product-discountprice'>{`$${product.price}`}</p>
                                     </div>
-                                    <p className='__product-summary'>{product!.description === '' ? 'Discovered had get considered projection who favourable. Necessary up knowledge it tolerably. Unwilling departure education is be dashwoods or an. Use off agreeable law unwilling sir deficient curiosity instantly. (read more) ' : `${product!.description}` } </p>
+                                    <p className='__product-summary'>{product.description === '' ? 'Discovered had get considered projection who favourable. Necessary up knowledge it tolerably. Unwilling departure education is be dashwoods or an. Use off agreeable law unwilling sir deficient curiosity instantly. (read more) ' : `${product!.description}` } </p>
                                 </div>
                             
                             <form onSubmit={handleSubmit}>
@@ -108,7 +109,7 @@ function Product( { product }:IProductProps ) {
                                     <div id='__amount'>{amount}</div>
                                     <button id='increment' type='button' onClick={incrementValue} className='__increment'>+</button>
                                 </div>
-                                <button type='button' onClick={() => addToCart(product!)} id='btn' className='__btn-red'>ADD TO CART</button>
+                                <button type='button' onClick={() => addToCart(product)} id='btn' className='__btn-red'>ADD TO CART</button>
                                 <div id='share'>
                                     <p className='__product-form-label'>Share:</p>
                                     <div className='__share-icons'>

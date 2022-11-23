@@ -15,7 +15,7 @@ interface IProductContextFunctions  {
 }
 
 interface IproductContext {
-    articleNumber: string
+    articleNumber: number
     name: string
     description: string
     category: string
@@ -36,7 +36,7 @@ export const useProducts = () => {
 
 
 export const ProductsProvider = ({children}:IProductsProviderProps) => {
-    const url = 'https://win22-webapi.azurewebsites.net/api/products'
+    const url = 'http://localhost:4000/api/products'
     const [products, setProducts] = useState<IproductContext[]>([])
     const [product, setProduct] = useState<IproductContext>()
     const [gridProducts, setGridProducts] = useState<IproductContext[]>([])
