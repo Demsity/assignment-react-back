@@ -9,6 +9,7 @@ import ProductViewSingle from './Views/ProductViewSingle';
 import CategoriesView from './Views/CategoriesView';
 import FavoritesView from './Views/FavoritesView';
 import LogInView from './Views/LogInView';
+import AdminView from './Views/AdminView';
 import { ProductsProvider } from './Contexts/ProductsContext';
 import CategoriesViewSingle from './Views/CategoriesViewSingle';
 import ScrollToTop from './Utilities/ScrollToTop';
@@ -17,6 +18,9 @@ import Additional from './SubRoutes/Additional';
 import Returns from './SubRoutes/Returns';
 import Review from './SubRoutes/Review';
 import { CartProvider } from './Contexts/CartContext';
+import CreateProduct from './SubRoutes/CreateProduct';
+import ViewComments from './SubRoutes/ViewComments';
+import ViewUsers from './SubRoutes/ViewUsers';
 
 
 function App() {
@@ -29,13 +33,19 @@ function App() {
       <ProductsProvider>
         <Routes>
             <Route path='/' element={<HomeView />} />
+            <Route path='/admin/' element={<AdminView />}>
+              <Route path='' element={<CreateProduct />}/>
+              <Route path='create-product' element={<CreateProduct />} />
+              <Route path='view-comments' element={<ViewComments />} />
+              <Route path='view-users' element={<ViewUsers />} />
+            </Route>
             <Route path='/contact' element={<ContactView />} />
             <Route path='/product/' element={<ProductView />} />
             <Route path='/product/:id' element={<ProductViewSingle />}>
-                <Route index path='description' element={<Description />} />
-                <Route path='additional' element={<Additional />} />
-                <Route path='returns' element={<Returns />} />
-                <Route path='review' element={<Review />} />
+              <Route index path='description' element={<Description />} />
+              <Route path='additional' element={<Additional />} />
+              <Route path='returns' element={<Returns />} />
+              <Route path='review' element={<Review />} />
             </Route>
             <Route path='/categories' element={<CategoriesView />} />
             <Route path='/favorites' element={<FavoritesView />} />

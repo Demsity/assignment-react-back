@@ -1,0 +1,34 @@
+// Design Mobile
+.__navbar-admin-container {
+    margin-top: 3rem;
+    max-width: 1110px;
+    .__navbar-admin-wrapper {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    
+        .__navbar-admin-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            
+            .__navbar-admin-link-active {
+                margin: 2rem;
+                color: $color-red-1;
+
+                &:hover {
+                    color: $color-red-1;
+                }
+            }
+            .__navbar-admin-link {
+                margin: 2rem;
+                color: $theme-color-dark;
+
+                &:hover {
+                    color: $color-red-1;
+                }
+            }
+        }
+    }
+}

@@ -46,9 +46,7 @@ function ContactForm() {
             }else {
                 setFailedSubmit(true)
             }
-            
 
-            
 
         } else {
             console.log('Form not submitted')

@@ -4,7 +4,50 @@ interface ValidateI {
     comments: string
 }
 
+interface InewProduct {
+    name: string
+    description: string
+    category: string
+    price: number 
+    rating: number 
+    imageName: string
+}
 
+interface IError {
+    name: string
+    description: string
+    category: string
+    price: string
+    rating: string
+    imageName: string
+}
+
+// validate Product for creating
+export const validateProduct = (values: InewProduct) => {
+    let error: IError = {name: '', description: '', category: '', price: '', rating: '', imageName: ''}
+    if (values.name === ''){
+        error.name = 'Please enter a name'
+    } 
+
+    if (values.description === ''){
+        error.description = 'Please enter a description'
+    } 
+
+    if (values.category === ''){
+        error.category = 'Please enter a category'
+    } 
+
+    if (isNaN(values.price)){
+        error.price = 'You must enter a number'
+    } 
+    if (isNaN(values.rating)){
+        error.rating = 'You must enter a number'
+    } 
+    if (values.imageName === ''){
+        error.imageName = 'Please enter a Image Link'
+    } 
+    return error
+}
 
 
 // Validate form
