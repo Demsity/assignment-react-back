@@ -8,7 +8,6 @@ interface BreadcrumbsProps {
 
 function Breadcrumbs({ page, prevPage }:BreadcrumbsProps) {
 
-  console.log(page)
   // check needed for render to work
   if (page === undefined) {
     return (<div>Something went wrong</div>)

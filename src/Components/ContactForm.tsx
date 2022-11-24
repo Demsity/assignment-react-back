@@ -19,10 +19,9 @@ function ContactForm() {
     const [failedSubmit, setFailedSubmit] = useState(false)
 
     // register keypress
-    const onChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
         const {id, value} = e.target
         setContactForm({...contactForm, [id]: value })
-
     }
 
     // use effect to validate input fields. Using use effect to get around async of State
@@ -35,14 +34,14 @@ function ContactForm() {
 
 
     // submitting the form
-    const handleSubmit = (e:React.FormEvent<EventTarget>) => {
+    const handleSubmit = (e: React.FormEvent<EventTarget>) => {
         e.preventDefault()
 
-        if (formErrors.name === undefined && formErrors.email === undefined && formErrors.comments === undefined) {
+        if (formErrors.name === '' && formErrors.email === '' && formErrors.comments === '') {
             
-            let json = JSON.stringify({...contactForm})
+            let json = {...contactForm}
             if (submitData) {
-                submitData('https://win22-webapi.azurewebsites.net/api/contactform', 'POST', json )
+                submitData('http://localhost:4000/api', 'POST', json )
                 setFormSubmitted(true)
             }else {
                 setFailedSubmit(true)
@@ -59,8 +58,6 @@ function ContactForm() {
         }
 
     }
-
-
     return (
         <section className='container __form-container'>
             {
@@ -87,15 +84,15 @@ function ContactForm() {
                 <form onSubmit={handleSubmit} className='__form' noValidate>
                     <h3 className='__form-title'>Come in contact with us!</h3>
                     <div className='__form-wrapper __form1'>
-                        <input type="text" name='name' id='name' placeholder='Your Name' onChange={() => onChange} />
+                        <input type="text" name='name' id='name' placeholder='Your Name' onChange={event => onChange(event)} />
                         <div id='name-error' className='__text-error'>{formErrors.name}</div>
                     </div>
                     <div className='__form-wrapper __form2'>
-                        <input type="email" name='email' id='email' placeholder='Your Mail' onChange={() => onChange} />
+                        <input type="email" name='email' id='email' placeholder='Your Mail' onChange={event => onChange(event)} />
                         <div id='name-error' className='__text-error'>{formErrors.email}</div>
                     </div>
                     <div className='__form-wrapper __form3'>
-                        <textarea name='comments' id='comments' placeholder='Your Comment' onChange={() => onChange} />
+                        <textarea name='comments' id='comments' placeholder='Your Comment' onChange={event => onChange(event)} />
                         <div id='name-error' className='__text-error'>{formErrors.comments}</div>
                     </div>
                     <ButtonSquare title="Post Comments" color="__btn-red" />
