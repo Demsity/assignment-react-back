@@ -7,7 +7,7 @@ interface IProductsProviderProps {
 
 interface IProductContextFunctions  {
     getProducts: () => void
-    getProduct: (id:string) => void
+    getProduct: (id:number) => void
     getGridProducts: (take: number) => void
     products: IproductContext[]
     product: IproductContext | undefined
@@ -48,7 +48,7 @@ export const ProductsProvider = ({children}:IProductsProviderProps) => {
     }
 
     // fetch single product from API
-    const getProduct = async (articleNumber: string) => {
+    const getProduct = async (articleNumber: number) => {
         const res = await fetch(url + `/${articleNumber}`)
         setProduct(await res.json())
     }

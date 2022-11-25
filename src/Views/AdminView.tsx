@@ -11,9 +11,9 @@ function AdminView() {
             <div className='__navbar-admin-wrapper container'>
                 <nav className='__navbar-admin-links'>
                     <NavLink end to={'create-product'} className={({ isActive }) => (isActive ? '__navbar-admin-link-active' : '__navbar-admin-link')}>Create Product</NavLink>
+                    <NavLink end to={'update-product'} className={({ isActive }) => (isActive ? '__navbar-admin-link-active' : '__navbar-admin-link')} >Update Product</NavLink>
                     <NavLink end to={'view-comments'} className={({ isActive }) => (isActive ? '__navbar-admin-link-active' : '__navbar-admin-link')} >View Comments</NavLink>
                     <NavLink end to={'view-users'} className={({ isActive }) => (isActive ? '__navbar-admin-link-active' : '__navbar-admin-link')} >View Users</NavLink>
-                    <NavLink end to='/admin' className={({ isActive }) => (isActive ? '__navbar-admin-link-active' : '__navbar-admin-link')} ></NavLink>
                 </nav>
             </div>
         </section>

@@ -12,6 +12,7 @@ function ProductViewSingle() {
   const { product, getProduct, gridProducts, getGridProducts } = useProducts()
   let location = useLocation()
 
+  console.log(productId.id)
   // update on url change, to make it update like it should
   useEffect(() => {
     getProduct(productId.id)
@@ -19,11 +20,12 @@ function ProductViewSingle() {
   
   }, [location.pathname])
 
+  console.log(product)
 
   return  (
     <>
       <Navbar />
-      {/* <Breadcrumbs page={product!.name} prevPage='product' /> */}
+      {/* <Breadcrumbs page={product.name} prevPage={product.category} /> */}
       <Product product={product} />
       <FeaturedGrid title='Related Products' products={gridProducts} />
       <Footer />

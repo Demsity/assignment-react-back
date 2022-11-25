@@ -43,6 +43,10 @@ export const validateProduct = (values: InewProduct) => {
     if (isNaN(values.rating)){
         error.rating = 'You must enter a number'
     } 
+    
+    if (values.rating < 1 || values.rating > 5) {
+        error.rating = 'Rating must be between 1 and 5'
+    }
     if (values.imageName === ''){
         error.imageName = 'Please enter a Image Link'
     } 
@@ -94,7 +98,7 @@ export const submitData = (url: string, method: string, data: any, contentType =
         body: JSON.stringify(data)
     })
     .then (res => {
-        if (res.status === 201) {
+        if (res.status === 201 || res.status === 200) {
             return true
         }
         return false

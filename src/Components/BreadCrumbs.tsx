@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 interface BreadcrumbsProps {
-  page: string
+  page?: string
   prevPage?: string
 }
 

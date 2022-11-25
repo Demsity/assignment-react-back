@@ -26,23 +26,25 @@ function CreateProduct() {
   const [default_error, setDefault_error] = useState<IError>({name: '', description: '', category: '', price: '', rating: '', imageName: ''})
   const [newProduct, setNewProduct] = useState<INewProduct>(default_product)
   const [productError, setProductError] = useState<IError>(default_error)
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
     const {id, value} = e.target
     setNewProduct({...newProduct, [id]: value })
-}
+    setFormSubmitted(false)
+  } 
   const onChangeNumber = (e: React.ChangeEvent<HTMLInputElement>)=>{
     const {id, value} = e.target
     setNewProduct({...newProduct, [id]: parseInt(value) })
-}
+  }
 
-useEffect(() => {
-  setProductError(validateProduct(newProduct))
+  useEffect(() => {
+    setProductError(validateProduct(newProduct))
+    
+  }, [newProduct])
 
-}, [newProduct])
 
-console.log(newProduct)
 
   const handleSubmit = (e:React.FormEvent<EventTarget>) => {
     e.preventDefault()
@@ -60,6 +62,8 @@ console.log(newProduct)
       if (submitData) {
           submitData('http://localhost:4000/api/products', 'POST', json )
           setNewProduct(default_product)
+          setFormSubmitted(true)
+          
       }
 
     } else {
@@ -73,23 +77,26 @@ console.log(newProduct)
     <div className='container __cp-container'>
       <form onSubmit={handleSubmit} className='__cp-form' noValidate>
         <label>Title</label>
-        <input type="text" id='name' onChange={event => onChange(event)} />
+        <input type="text" id='name' value={newProduct.name} onChange={event => onChange(event)} />
         <div id='name-error' className='__text-error'>{productError.name}</div>
         <label>Price</label>
-        <input type="text" id='price' onChange={event => onChangeNumber(event)} />
+        <input type="number" id='price' value={newProduct.price.toString()} onChange={event => onChangeNumber(event)} />
         <div id='name-error' className='__text-error'>{productError.price}</div>
         <label>Rating</label>
-        <input type="text" id='rating' onChange={event => onChangeNumber(event)} />
+        <input type="number" id='rating' value={newProduct.rating.toString()} onChange={event => onChangeNumber(event)} />
         <div id='name-error' className='__text-error'>{productError.rating}</div>
         <label>Description</label>
-        <textarea id='description' onChange={event => onChange(event)} />
+        <textarea id='description' value={newProduct.description} onChange={event => onChange(event)} />
         <div id='name-error' className='__text-error'>{productError.description}</div>
         <label>Category</label>
-        <input id='category' type="text" onChange={event => onChange(event)} />
+        <input id='category' type="text" value={newProduct.category} onChange={event => onChange(event)} />
         <div id='name-error' className='__text-error'>{productError.category}</div>
         <label>Image(link)</label>
-        <input id='imageName' type="text" onChange={event => onChange(event)} />
+        <input id='imageName' type="text" value={newProduct.imageName} onChange={event => onChange(event)} />
         <div id='name-error' className='__text-error'>{productError.imageName}</div>
+        {
+          formSubmitted ? <div>Product Created</div> : <div></div>
+        }
         <button className='__btn-red mt-3'>Create Product</button>
       </form>
     </div>
