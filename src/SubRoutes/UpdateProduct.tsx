@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useProducts } from '../Contexts/ProductsContext'
 import { ProductInterface } from '../Utilities/Interfaces'
-import { submitData, validateProduct } from '../Utilities/Submit&Validation'
+import { removeData, submitData, validateProduct } from '../Utilities/Submit&Validation'
 
 interface INewProduct {
     articleNumber: number
@@ -28,6 +28,7 @@ function UpdateProduct() {
     const [default_error, setDefault_error] = useState<IError>({name: '', description: '', category: '', price: '', rating: '', imageName: ''})
     const [updatedProduct, setUpdatedProduct ] = useState(default_product)
     const [productError, setProductError] = useState<IError>(default_error)
+    const [pageState, setPageState] = useState('')
     const [query, setQuery] = useState({articleNumber: 0})
     const [userLoaded, setUserLoaded] = useState(false)
     const { product, getProduct} = useProducts()
@@ -75,21 +76,36 @@ function UpdateProduct() {
 
         e.preventDefault()
 
-        console.log(updatedProduct)
         if (e.target) {
             
             let json = {updatedProduct}
             if (submitData) {
                 submitData(`http://localhost:4000/api/products/${query}`, 'PUT', json )
                 setUserLoaded(false)
+                setPageState(`Updated product with article-number:  ${query.articleNumber}`)
             }
     }
-}
+    }
 
+    const handleRemove = (e : React.FormEvent<EventTarget>) => {
+        e.preventDefault()
+        
+        if (e.target) {
+            
+            let json = {updatedProduct}
+            if (submitData) {
+                submitData(`http://localhost:4000/api/products/${query.articleNumber}`, 'DELETE', json )
+                setUserLoaded(false)
+                setPageState(`Removed product with article-number:  ${query.articleNumber}`)
+            }
+    }
+    }
     if (!userLoaded) {
         return (
                 <div className='__cp-container container'>
                     <form onSubmit={handleSubmitLoad} className='__cp-form'>
+                        <h3 className='mb-4'>{pageState}</h3>
+                        
                         <h3 className='mb-3'>Update Product</h3>
                         <input className='mb-4' onChange={event => onChangeQuery(event)} id='articleNumber' type="text" placeholder='Search for Article Number' />
                         <button className='__btn-red'>Search Product</button>
@@ -121,6 +137,9 @@ function UpdateProduct() {
                         <input id='imageName' type="text" value={updatedProduct.imageName} onChange={event => onChange(event)} />
                         <div id='name-error' className='__text-error'>{productError.imageName}</div>
                         <button className='__btn-red mt-3'>Update Product</button>
+                    </form>
+                    <form onSubmit={handleRemove}>
+                        <button className='__btn-red' type='submit'>Delete Product</button>
                     </form>
             </div>
           )

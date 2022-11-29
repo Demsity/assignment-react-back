@@ -37,8 +37,9 @@ export const useProducts = () => {
 
 export const ProductsProvider = ({children}:IProductsProviderProps) => {
     const url = 'http://localhost:4000/api/products'
+    const [default_product, setDefault_product] = useState<IproductContext>({articleNumber: 0, name: '', description: '', category: '', price: 0, rating: 0, imageName: '' })
     const [products, setProducts] = useState<IproductContext[]>([])
-    const [product, setProduct] = useState<IproductContext>()
+    const [product, setProduct] = useState<IproductContext>(default_product)
     const [gridProducts, setGridProducts] = useState<IproductContext[]>([])
 
     // fetch all products from API

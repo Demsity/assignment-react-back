@@ -1,3 +1,5 @@
+import { ProductInterface } from "./Interfaces"
+
 interface ValidateI {
     name: string
     email: string
@@ -99,6 +101,20 @@ export const submitData = (url: string, method: string, data: any, contentType =
     })
     .then (res => {
         if (res.status === 201 || res.status === 200) {
+            return true
+        }
+        return false
+        
+    })
+}
+
+// Remove item from API
+export const removeData = (url: string, method: string, articleNumber: number ) => {
+    fetch(url, {
+        method: method, 
+    })
+    .then (res => {
+        if (res.status === 204) {
             return true
         }
         return false
