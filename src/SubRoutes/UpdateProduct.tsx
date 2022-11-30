@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Breadcrumbs from '../Components/BreadCrumbs'
 import { useProducts } from '../Contexts/ProductsContext'
 import { ProductInterface } from '../Utilities/Interfaces'
 import { removeData, submitData, validateProduct } from '../Utilities/Submit&Validation'
@@ -103,6 +104,7 @@ function UpdateProduct() {
     if (!userLoaded) {
         return (
                 <div className='__cp-container container'>
+                    <Breadcrumbs page='Update Product' prevPage='Admin' />
                     <form onSubmit={handleSubmitLoad} className='__cp-form'>
                         <h3 className='mb-4'>{pageState}</h3>
                         
@@ -116,6 +118,7 @@ function UpdateProduct() {
     } else {
         return (
             <div className='__cp-container container'>
+                    <Breadcrumbs page='Update Product' prevPage='Admin' />
                       <form onSubmit={handleSubmit} className='__cp-form' noValidate>
                          <h3 className='mb-3'>Update Product</h3>
                         <label>Title</label>

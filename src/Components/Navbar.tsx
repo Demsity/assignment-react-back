@@ -48,7 +48,7 @@ const Navbar = () => {
             <NavLink className='__navbar-link' to='/categories'>Categories</NavLink>
             <NavLink className='__navbar-link' to='/product/'>Products</NavLink>
             <NavLink end className='__navbar-link' to='/contact'>Contacts</NavLink>
-            <NavLink end className='__navbar-link' to='/admin'>Manage</NavLink>
+            <NavLink className='__navbar-link' to='/admin'>Admin</NavLink>
         </nav>
         <nav className='__user-interface ms-4'>
             <button className={'__round-button'} type='button' data-bs-toggle="offcanvas" data-bs-target={'#search'} aria-controls={'search'} >

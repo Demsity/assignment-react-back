@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Breadcrumbs from '../Components/BreadCrumbs'
 import { ProductInterface } from '../Utilities/Interfaces'
 import { submitData, validateProduct } from '../Utilities/Submit&Validation'
 
@@ -75,6 +76,7 @@ function CreateProduct() {
 
   return (
     <div className='container __cp-container'>
+      <Breadcrumbs page='Create Product' prevPage='Admin' />
       <form onSubmit={handleSubmit} className='__cp-form' noValidate>
         <label>Title</label>
         <input type="text" id='name' value={newProduct.name} onChange={event => onChange(event)} />

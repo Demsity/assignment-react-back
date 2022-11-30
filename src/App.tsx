@@ -22,6 +22,7 @@ import CreateProduct from './SubRoutes/CreateProduct';
 import ViewComments from './SubRoutes/ViewComments';
 import ViewUsers from './SubRoutes/ViewUsers';
 import UpdateProduct from './SubRoutes/UpdateProduct';
+import Dashboard from './SubRoutes/Dashboard';
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
         <Routes>
             <Route path='/' element={<HomeView />} />
             <Route path='/admin/' element={<AdminView />}>
-              <Route path='' element={<CreateProduct />}/>
+              <Route path='' element={<Dashboard />}/>
               <Route path='create-product' element={<CreateProduct />} />
               <Route path='update-product' element={<UpdateProduct />} />
               <Route path='view-comments' element={<ViewComments />} />
