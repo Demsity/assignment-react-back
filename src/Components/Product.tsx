@@ -32,11 +32,11 @@ function Product( { product }:IProductProps ) {
     // ignoring color and size for now, due quick add to cart button on productcard
     // Fix input number add to cart
     const addToCart = (item:ProductInterface) => {
-        const itemQuantity = document.getElementById('__amount')!.innerText
-        incrementQuantity(item.articleNumber)
+        const itemQuantity = parseInt(document.getElementById('__amount')!.innerText)
+        console.log(itemQuantity)
+        incrementQuantity(item, itemQuantity)
     }
 
-    console.log(product)
 
     if (product === undefined){
         return (<div className='container mt-5'>Something went wrong</div>)

@@ -6,7 +6,7 @@ interface ICartContext {
     cartItems: ICartItems[]
     cartQuantity: number
     getItemQuantity: (articleNumber: number) => number
-    incrementQuantity: (articleNumber: number) => void
+    incrementQuantity: (product: ICartItems, inputValue?: number) => void
     decrementQuantity: (articleNumber: number) => void
     removeItem: (articleNumber: number) => void
 }
@@ -17,12 +17,12 @@ interface CartProviderProps {
 
 interface ICartItems {
     articleNumber: number
-    name?: string
-    description?: string
-    category?: string
-    price?: number
-    rating?: number
-    imageName?: string
+    name: string
+    description: string
+    category: string
+    price: number
+    rating: number
+    imageName: string
     quantity?: number
 }
 
@@ -50,14 +50,15 @@ export const CartProvider = ({children}:CartProviderProps) => {
     }
 
     // increment the product quantity in the shoppingcart
-   const incrementQuantity = ( articleNumber: number, inputAmount = 1) => {
+   const incrementQuantity = ( product: ICartItems, inputAmount?: number) => {
+        const {articleNumber, name, description, category, price, rating, imageName} = product
         setCartItems(currItems => {
             if (currItems.find(item => item.articleNumber === articleNumber) == null) {
-                return [...currItems, {articleNumber, quantity: 1}]
+                return [...currItems, {articleNumber, name, description, category, price, rating, imageName, quantity: inputAmount || 1}]
             } else {
                 return currItems.map(item => {
                     if (item.articleNumber === articleNumber){
-                        return { ...item, quantity: item.quantity! + inputAmount}
+                        return { ...item, quantity: item.quantity! + 1}
                     } else {
                         return item
                     }

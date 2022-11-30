@@ -19,7 +19,6 @@ function ProductViewSingle() {
   
   }, [location.pathname])
 
-  console.log(product)
 
   return  (
     <>

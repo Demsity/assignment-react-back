@@ -16,7 +16,7 @@ function Cart() {
         <div className="offcanvas-body">
           {
             // render out a product for each item in caritems state
-            cartItems.map(item => (<CartProduct key={item.articleNumber} name={item.name} price={item.price} img={item.imageName} articleNumber={item.articleNumber} />))
+            cartItems.map(item => (<CartProduct key={item.articleNumber} product={item} />))
           }
         </div>
         <div className='__purchase-btn'>
