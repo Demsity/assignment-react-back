@@ -13,11 +13,13 @@ import Showcase from '../Components/Showcase'
 import SiteInfo from '../Components/SiteInfo'
 
 function HomeView() {
-  const { gridProducts, getGridProducts } = useProducts()
+  const { productsByTag, getProductsByTag, getProductsByPrice, getProductsByPrice2, productsByPrice, productsByPrice2 } = useProducts()
 
   useEffect(() => {
-    getGridProducts(8)
-  
+    getProductsByTag('featured', 8)
+    getProductsByPrice(49, 4)
+    getProductsByPrice2(29, 4)
+    
   }, [])
   
   return (
@@ -25,14 +27,14 @@ function HomeView() {
         <Navbar />
         <Showcase />
         <PromoBanner />
-        <FeaturedGrid title='Featured Products' products={gridProducts} />
+        <FeaturedGrid title='Featured Products' products={productsByTag} />
         <NewsBanner />
         <OurSpeciality />
         {/* made a .slice due to API limitations, maybe fix later */}
-        <SaleGrid products={gridProducts.slice(6)} />
-        <SaleGrid products={gridProducts.slice(6)} imgRight={true} />
+        <SaleGrid products={productsByPrice} />
+        <SaleGrid products={productsByPrice2} imgRight={true} />
         <FlashSale />
-        <ProductDisplay products={gridProducts.slice(5)} />
+        {/* <ProductDisplay products={gridProducts.slice(5)} /> */}
         <SiteInfo />
         <Footer />
     </>

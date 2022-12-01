@@ -17,8 +17,8 @@ function SaleGrid( { img, imgRight, products }:SaleGridProps ) {
         return (
             <div className='container __sale-grid'>
                 <div className='__sale-grids-right'>
-                    <FeaturedGrid title=''  products={products} />
-                    <FeaturedGrid title=''  products={products} />
+                    <FeaturedGrid title=''  products={products.slice(0-2)} />
+                    <FeaturedGrid title=''  products={products.slice(3-5)} />
                 </div>
                 <div className='__sale-img'>
                     <img src={img} alt="" />
@@ -36,8 +36,8 @@ function SaleGrid( { img, imgRight, products }:SaleGridProps ) {
                     <ButtonSquare title='FLASH SALE' color='__btn-white' />
                 </div>
                 <div className='__sale-grids'>
-                    <FeaturedGrid title=''  products={products} />
-                    <FeaturedGrid title=''  products={products} />
+                <FeaturedGrid title=''  products={products.slice(0-2)} />
+                <FeaturedGrid title=''  products={products.slice(3-5)} />
                 </div>
                 
             </div>
