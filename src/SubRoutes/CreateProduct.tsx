@@ -9,6 +9,7 @@ interface INewProduct {
   category: string
   price: number
   rating: number
+  tag: string
   imageName: string
 }
 
@@ -23,7 +24,7 @@ interface IError {
 
 
 function CreateProduct() {
-  const [default_product, setDefault_product] = useState<INewProduct>({name: '', description: '', category: '', price: NaN, rating: NaN, imageName: ''})
+  const [default_product, setDefault_product] = useState<INewProduct>({name: '', description: '', category: '', price: NaN, rating: NaN, tag: '', imageName: ''})
   const [default_error, setDefault_error] = useState<IError>({name: '', description: '', category: '', price: '', rating: '', imageName: ''})
   const [newProduct, setNewProduct] = useState<INewProduct>(default_product)
   const [productError, setProductError] = useState<IError>(default_error)
@@ -40,11 +41,15 @@ function CreateProduct() {
     setNewProduct({...newProduct, [id]: parseInt(value) })
   }
 
+  const onRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target
+    setNewProduct({...newProduct, [name]: value})
+  } 
+
   useEffect(() => {
     setProductError(validateProduct(newProduct))
     
   }, [newProduct])
-
 
 
   const handleSubmit = (e:React.FormEvent<EventTarget>) => {
@@ -77,6 +82,9 @@ function CreateProduct() {
   return (
     <div className='container __cp-container'>
       <Breadcrumbs page='Create Product' prevPage='Admin' />
+        {
+          formSubmitted ? <div>Product Created</div> : <div></div>
+        }
       <form onSubmit={handleSubmit} className='__cp-form' noValidate>
         <label>Title</label>
         <input type="text" id='name' value={newProduct.name} onChange={event => onChange(event)} />
@@ -96,9 +104,12 @@ function CreateProduct() {
         <label>Image(link)</label>
         <input id='imageName' type="text" value={newProduct.imageName} onChange={event => onChange(event)} />
         <div id='name-error' className='__text-error'>{productError.imageName}</div>
-        {
-          formSubmitted ? <div>Product Created</div> : <div></div>
-        }
+        <label>Featured Product</label>
+        <input type='radio' name='tag' value='featured' onChange={event => onRadio(event)}  />
+        <label>News</label>
+        <input type='radio' name='tag' value='news' onChange={event => onRadio(event)}  />
+        <label>No Tag</label>
+        <input type='radio' name='tag' value='' onChange={event => onRadio(event)}  />
         <button className='__btn-red mt-3'>Create Product</button>
       </form>
     </div>

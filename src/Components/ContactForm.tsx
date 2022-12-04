@@ -59,10 +59,6 @@ function ContactForm() {
     return (
         <section className='container __form-container'>
             {
-
-
-
-
                 formSubmitted ? 
                 (
                     <div className='__succsess container '>
