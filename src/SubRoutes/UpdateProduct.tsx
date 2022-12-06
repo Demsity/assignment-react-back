@@ -5,7 +5,7 @@ import { ProductInterface } from '../Utilities/Interfaces'
 import { removeData, submitData, validateProduct } from '../Utilities/Submit&Validation'
 
 interface INewProduct {
-    articleNumber: number
+    articleNumber: string
     name: string
     description: string
     category: string
@@ -25,12 +25,12 @@ interface INewProduct {
 
 
 function UpdateProduct() {
-    const [default_product, setDefault_product] = useState<INewProduct>({ articleNumber: 0, name: '', description: '', category: '', price: NaN, rating: NaN, imageName: ''})
+    const [default_product, setDefault_product] = useState<INewProduct>({ articleNumber: '', name: '', description: '', category: '', price: NaN, rating: NaN, imageName: ''})
     const [default_error, setDefault_error] = useState<IError>({name: '', description: '', category: '', price: '', rating: '', imageName: ''})
     const [updatedProduct, setUpdatedProduct ] = useState(default_product)
     const [productError, setProductError] = useState<IError>(default_error)
     const [pageState, setPageState] = useState('')
-    const [query, setQuery] = useState({articleNumber: 0})
+    const [query, setQuery] = useState({articleNumber: ''})
     const [userLoaded, setUserLoaded] = useState(false)
     const { product, getProduct} = useProducts()
 
@@ -58,16 +58,11 @@ function UpdateProduct() {
         
       }, [updatedProduct])
 
-    // fetch product from query
-    useEffect(() => {
-
-        getProduct(query.articleNumber)
-  
-    }, [query])
     
 
     const handleSubmitLoad = (e : React.FormEvent<EventTarget>) => {
         e.preventDefault()
+        getProduct(query.articleNumber)
         setUpdatedProduct(product!)
         setUserLoaded(true)
     }
@@ -79,7 +74,7 @@ function UpdateProduct() {
 
         if (e.target) {
             
-            let json = {updatedProduct}
+            let json = updatedProduct
             if (submitData) {
                 submitData(`http://localhost:4000/api/products/${query}`, 'PUT', json )
                 setUserLoaded(false)

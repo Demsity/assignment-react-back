@@ -5,10 +5,10 @@ import Cart from "../Components/Cart"
 interface ICartContext {
     cartItems: ICartItems[]
     cartQuantity: number
-    getItemQuantity: (articleNumber: number) => number
+    getItemQuantity: (articleNumber: string) => number
     incrementQuantity: (product: ICartItems, inputValue?: number) => void
-    decrementQuantity: (articleNumber: number) => void
-    removeItem: (articleNumber: number) => void
+    decrementQuantity: (articleNumber: string) => void
+    removeItem: (articleNumber: string) => void
 }
 
 interface CartProviderProps {
@@ -16,7 +16,7 @@ interface CartProviderProps {
 }
 
 interface ICartItems {
-    articleNumber: number
+    articleNumber: string
     name: string
     description: string
     category: string
@@ -45,7 +45,7 @@ export const CartProvider = ({children}:CartProviderProps) => {
     )
 
     // get the quantity of a single procut
-    function getItemQuantity(articleNumber: number) {
+    function getItemQuantity(articleNumber: string) {
         return cartItems.find(item => item.articleNumber === articleNumber)!.quantity || 0
     }
 
@@ -69,7 +69,7 @@ export const CartProvider = ({children}:CartProviderProps) => {
     }
 
     // decrement the product quantity in the shoppingcart
-    const decrementQuantity = (articleNumber: number) => {
+    const decrementQuantity = (articleNumber: string) => {
         setCartItems(currItems => {
             if (currItems.find(item => item.articleNumber === articleNumber)!.quantity === 1) {
                 return currItems.filter(item => item.articleNumber !== articleNumber)
@@ -88,7 +88,7 @@ export const CartProvider = ({children}:CartProviderProps) => {
 
 
     // remove product from cart
-    const removeItem = (articleNumber: number) => {
+    const removeItem = (articleNumber: string) => {
         setCartItems(items => {
             return items.filter(item => item.articleNumber !== articleNumber)
         })

@@ -5,7 +5,7 @@ import { useCart } from '../Contexts/CartContext';
 import { ProductInterface } from '../Utilities/Interfaces';
 
 interface IProductProps {
-    product: ProductInterface |undefined
+    product: ProductInterface | undefined
 }
 
 
@@ -30,7 +30,6 @@ function Product( { product }:IProductProps ) {
     }
 
     // ignoring color and size for now, due quick add to cart button on productcard
-    // Fix input number add to cart
     const addToCart = (item:ProductInterface) => {
         const itemQuantity = parseInt(document.getElementById('__amount')!.innerText)
         console.log(itemQuantity)

@@ -7,7 +7,7 @@ interface IProductsProviderProps {
 
 interface IProductContextFunctions  {
     getProducts: () => void
-    getProduct: (id:number) => void
+    getProduct: (articleNumber:string) => void
     getGridProducts: (take: number) => void
     getProductsByTag: (tag:string, take: number) => void
     getProductsByPrice: (price: number, take: number) => void
@@ -21,7 +21,7 @@ interface IProductContextFunctions  {
 }
 
 interface IproductContext {
-    articleNumber: number
+    articleNumber: string
     name: string
     description: string
     category: string
@@ -44,7 +44,7 @@ export const useProducts = () => {
 
 export const ProductsProvider = ({children}:IProductsProviderProps) => {
     const url = 'http://localhost:4000/api/products'
-    const [default_product, setDefault_product] = useState<IproductContext>({articleNumber: 0, name: '', description: '', category: '', price: 0, rating: 0, imageName: '', tag: '' })
+    const [default_product, setDefault_product] = useState<IproductContext>({articleNumber: '', name: '', description: '', category: '', price: 0, rating: 0, imageName: '', tag: '' })
     const [products, setProducts] = useState<IproductContext[]>([])
     const [product, setProduct] = useState<IproductContext>(default_product)
     const [gridProducts, setGridProducts] = useState<IproductContext[]>([])
@@ -59,7 +59,7 @@ export const ProductsProvider = ({children}:IProductsProviderProps) => {
     }
 
     // fetch single product from API
-    const getProduct = async (articleNumber: number) => {
+    const getProduct = async (articleNumber: string) => {
         const res = await fetch(url + `/${articleNumber}`)
         setProduct(await res.json())
     }
@@ -74,7 +74,6 @@ export const ProductsProvider = ({children}:IProductsProviderProps) => {
     const getProductsByTag = async (tag: string ,take = 0) => {
         const res = await fetch(`${url}/get/${tag}?take=${take}`)
         setProductsByTag(await res.json())
-        console.log(gridProducts)
         
     }
     // fetch x number with same price

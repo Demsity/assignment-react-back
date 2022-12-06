@@ -13,8 +13,6 @@ interface GridCardProps {
 function GridCard( {products, path}:GridCardProps ) {
     const { incrementQuantity } = useCart()
 
-
-    
     
   return (
     <div className="__grid-card">
