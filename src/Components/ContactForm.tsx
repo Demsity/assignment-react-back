@@ -41,7 +41,7 @@ function ContactForm() {
             
             let json = {...contactForm}
             if (submitData) {
-                submitData('http://localhost:4000/api', 'POST', json )
+                submitData('http://localhost:4000/api/comments', 'POST', json )
                 setFormSubmitted(true)
             }else {
                 setFailedSubmit(true)

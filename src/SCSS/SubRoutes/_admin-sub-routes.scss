@@ -1,15 +1,36 @@
 .__cp-container {
     max-width: 1110px;
-    margin-top: 4rem;
+    // margin-top: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     .__cp-form {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+    }
+
+    .__radio-buttons {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+
+        .__radio-wrapper {
+            display: flex;
+            align-items: center;
+
+
+            label {
+                text-align: start;
+            }
+
+            input {
+                margin-right: .5rem;
+            }
+        }
     }
 }
 

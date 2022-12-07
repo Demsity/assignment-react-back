@@ -104,12 +104,20 @@ function CreateProduct() {
         <label>Image(link)</label>
         <input id='imageName' type="text" value={newProduct.imageName} onChange={event => onChange(event)} />
         <div id='name-error' className='__text-error'>{productError.imageName}</div>
-        <label>Featured Product</label>
-        <input type='radio' name='tag' value='featured' onChange={event => onRadio(event)}  />
-        <label>News</label>
-        <input type='radio' name='tag' value='news' onChange={event => onRadio(event)}  />
-        <label>No Tag</label>
-        <input type='radio' name='tag' value='' onChange={event => onRadio(event)}  />
+        <div className='__radio-buttons'>
+          <div className='__radio-wrapper'>
+            <input type='radio' name='tag' value='featured' onChange={event => onRadio(event)}  />
+            <label>Featured Product</label>
+          </div>
+          <div className='__radio-wrapper'>
+            <input type='radio' name='tag' value='news' onChange={event => onRadio(event)}  />
+            <label>News</label>
+          </div>
+          <div className='__radio-wrapper'>
+            <input type='radio' name='tag' value='' onChange={event => onRadio(event)}  />
+            <label>No Tag</label>
+          </div>
+        </div>
         <button className='__btn-red mt-3'>Create Product</button>
       </form>
     </div>

@@ -1,6 +1,10 @@
 .__footer {
     background-color: $color-white-3;
     margin-top: 5rem;
+    position: absolute;
+    bottom: -150px;
+    left: 0;
+    width: 100%;
 
     .__footer-container {
         flex-direction: column;
