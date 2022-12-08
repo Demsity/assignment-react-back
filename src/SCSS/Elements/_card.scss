@@ -210,6 +210,32 @@
 
 }
 
+.__comment-card-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 100%;
+    border: 1px solid $color-gray-5;
+    box-shadow: 1px, 1px, 1px, 1px;
+    padding: 1rem;
+    .__CC-text-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        border-bottom: 1px solid $color-gray-5;
+        p {
+            padding: 1rem;
+            margin: 0 1rem;
+        }
+    }
+    .__CC-comment-wrapper {
+        p {
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+    }
+}
+
 @include xxl {
 
 

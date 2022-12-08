@@ -16,11 +16,11 @@ function LogInView() {
   const [default_user, setDefault_user] = useState<IUser>({name: '', email: '', password: ''})
   const [user, setUser] = useState<IUser>(default_user)
 
-  console.log(user)
   const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
     const {name, value} = e.target
     setUser({...user, [name]: value })
 }
+
 
   const onLogin = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault()
