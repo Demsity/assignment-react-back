@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumbs from '../Components/BreadCrumbs'
 import { ProductInterface } from '../Utilities/Interfaces'
-import { submitData, validateProduct } from '../Utilities/Submit&Validation'
+import { validateProduct, submitRestrictedData } from '../Utilities/Submit&Validation'
 
 interface INewProduct {
   name: string
@@ -29,6 +29,7 @@ function CreateProduct() {
   const [newProduct, setNewProduct] = useState<INewProduct>(default_product)
   const [productError, setProductError] = useState<IError>(default_error)
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [pageState, setPageState] = useState('')
 
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
@@ -63,19 +64,32 @@ function CreateProduct() {
       productError.rating === '' && 
       productError.imageName === ''
       ) {
-                
-      let json = {...newProduct}
-      if (submitData) {
-          submitData('http://localhost:4000/api/products', 'POST', json )
-          setNewProduct(default_product)
-          setFormSubmitted(true)
-          
-      }
 
-    } else {
-      console.log('Form not submitted')
-      
-    }
+
+
+        fetch('http://localhost:4000/api/products', {
+          method: 'POST', 
+          headers: {
+              'Content-Type': 'application/json',
+              'authorization': `Bearer ${localStorage.getItem('accesToken')}`
+          }, 
+          body: JSON.stringify(newProduct)
+      })
+      .then (res => {
+          if (res.status === 201 || res.status === 200 || res.status === 204) {
+              setFormSubmitted(true)
+              setNewProduct(default_product)
+              setPageState('Product created!')
+          } else if (res.status === 401) {
+              setFormSubmitted(true)
+              setNewProduct(default_product)
+              setPageState('Error 401: unauthorized')
+              
+          } else {
+              console.log('error')
+          }
+      })
+  }
 }
 
 
@@ -83,7 +97,7 @@ function CreateProduct() {
     <div className='container __cp-container'>
       <Breadcrumbs page='Create Product' prevPage='Admin' />
         {
-          formSubmitted ? <div>Product Created</div> : <div></div>
+          formSubmitted ? <div>{pageState}</div> : <div></div>
         }
       <form onSubmit={handleSubmit} className='__cp-form' noValidate>
         <label>Title</label>

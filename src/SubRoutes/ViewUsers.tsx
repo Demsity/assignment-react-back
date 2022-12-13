@@ -26,7 +26,6 @@ function ViewUsers() {
   
   }, [routeChange])
   
-  console.log(users)
 
   return (
     <div>

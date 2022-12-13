@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { submitData } from '../Utilities/Submit&Validation'
+import { submitRestrictedData } from '../Utilities/Submit&Validation'
 
 interface userCardProps {
     id: string
@@ -13,12 +13,37 @@ function UserCard({ id, name, email }: userCardProps) {
     const handleDelete = (e: React.FormEvent<EventTarget>) => {
         e.preventDefault()
 
+
+
+
+        fetch(`http://localhost:4000/api/users/${id}`, {
+            method: 'delete', 
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accesToken')}`
+            }, 
+        })
+        .then (res => {
+            if (res.status === 201 || res.status === 200 || res.status === 204) {
+                setDeleted(true)
+            } else if (res.status === 401) {
+                console.log('Error 401: unauthorized')
+            } else {
+                console.log('error')
+            }
+        })
+
+
+
+
         let json = {}
-        if (submitData) {
-            submitData(`http://localhost:4000/api/users/${id}`, 'DELETE', json )
+        if (submitRestrictedData) {
+            submitRestrictedData(`http://localhost:4000/api/users/${id}`, 'DELETE', json )
             setDeleted(true)
 
-        }
+        } else {
+            console.log('401 Unatherized')
+          }
     }
 
     if (deleted) {

@@ -22,7 +22,6 @@ function ViewComments() {
   
   
   useEffect(() => {
-    console.log('useEffect is running')
     getComments()
   }, [routeChange])
 

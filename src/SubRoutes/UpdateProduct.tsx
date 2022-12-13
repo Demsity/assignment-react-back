@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumbs from '../Components/BreadCrumbs'
 import { useProducts } from '../Contexts/ProductsContext'
-import { ProductInterface } from '../Utilities/Interfaces'
-import { removeData, submitData, validateProduct } from '../Utilities/Submit&Validation'
+import { submitRestrictedData, validateProduct } from '../Utilities/Submit&Validation'
 
 interface INewProduct {
     articleNumber: string
@@ -68,34 +67,63 @@ function UpdateProduct() {
     }
     
 
+
+
     const handleSubmit = (e : React.FormEvent<EventTarget>) => {
 
         e.preventDefault()
 
-        if (e.target) {
-            
-            let json = updatedProduct
-            if (submitData) {
-                submitData(`http://localhost:4000/api/products/${query}`, 'PUT', json )
-                setUserLoaded(false)
-                setPageState(`Updated product with article-number:  ${query.articleNumber}`)
-            }
-    }
+            fetch(`http://localhost:4000/api/products/${query}`, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accesToken')}`
+                }, 
+                body: JSON.stringify(updatedProduct)
+            })
+            .then (res => {
+                if (res.status === 201 || res.status === 200 || res.status === 204) {
+                    setUserLoaded(false)
+                    setPageState(`Updated product with article-number:  ${query.articleNumber}`)
+                } else if (res.status === 401) {
+                    setUserLoaded(false)
+                    setPageState('Error 401: unauthorized')
+                    console.log('Error 401')
+                } else {
+                    console.log('error')
+                    setPageState('Error')
+                }
+            })
     }
 
     const handleRemove = (e : React.FormEvent<EventTarget>) => {
+
         e.preventDefault()
-        
-        if (e.target) {
-            
-            let json = {updatedProduct}
-            if (submitData) {
-                submitData(`http://localhost:4000/api/products/${query.articleNumber}`, 'DELETE', json )
-                setUserLoaded(false)
-                setPageState(`Removed product with article-number:  ${query.articleNumber}`)
-            }
+
+            fetch(`http://localhost:4000/api/products/${query}`, {
+                method: 'delete', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accesToken')}`
+                }, 
+                body: JSON.stringify(query)
+            })
+            .then (res => {
+                if (res.status === 201 || res.status === 200 || res.status === 204) {
+                    setUserLoaded(false)
+                    setPageState(`Removed product with article-number:  ${query.articleNumber}`)
+                } else if (res.status === 401) {
+                    setUserLoaded(false)
+                    setPageState('Error 401: unauthorized')
+                    console.log('Error 401')
+                } else {
+                    console.log('error')
+                    setPageState('Error')
+                }
+            })
     }
-    }
+
+
     if (!userLoaded) {
         return (
                 <div className='__cp-container container'>

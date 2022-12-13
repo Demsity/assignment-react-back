@@ -1,5 +1,6 @@
-import { stringify } from 'querystring'
+import { parse } from 'node:path/win32'
 import React, { useState } from 'react'
+import { redirect } from 'react-router-dom'
 import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
 
@@ -32,10 +33,13 @@ function LogInView() {
       }, 
       body: JSON.stringify(user)
   })
-  .then (res => {
+  .then (async res => {
       if (res.status === 201 || res.status === 200) {
+          const result = await res.json()
           setPage(true)
           setUser(default_user)
+          localStorage.setItem('accesToken', result.accesToken)
+          setError('Login Succssful')
       }else if (res.status === 404 || res.status === 400) {
         setError('User or password was incorrect or not registerd')
         setUser(default_user)
@@ -43,8 +47,6 @@ function LogInView() {
         setError('Something went wrong. Error 500')
         setUser(default_user)
       }
-      
-      
   })
   }
 

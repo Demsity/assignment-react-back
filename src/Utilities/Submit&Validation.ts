@@ -91,7 +91,7 @@ const validateEmail = (email:string) => {
     );
 }
 
-// Submit form to API
+// Fetch to API
 export const submitData = (url: string, method: string, data: any, contentType = 'application/json') => {
     fetch(url, {
         method: method, 
@@ -105,6 +105,25 @@ export const submitData = (url: string, method: string, data: any, contentType =
             return true
         }
         return false
+        
+    })
+}
+
+// Fetch restricted to API
+export const submitRestrictedData = (url: string, method: string, data: any, contentType = 'application/json') => {
+    fetch(url, {
+        method: method, 
+        headers: {
+            'Content-Type': contentType,
+            'authorization': `Bearer ${localStorage.getItem('accesToken')}`
+        }, 
+        body: JSON.stringify(data)
+    })
+    .then (res => {
+        if (res.status === 201 || res.status === 200) {
+            return 'succed'
+        }
+        return 'failed'
         
     })
 }

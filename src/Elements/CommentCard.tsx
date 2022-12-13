@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { submitData } from '../Utilities/Submit&Validation'
+import { submitRestrictedData } from '../Utilities/Submit&Validation'
 
 interface CommentCardProps {
     id: string
@@ -15,11 +15,13 @@ function CommentCard({ id, name, email, comments }: CommentCardProps) {
         e.preventDefault()
 
         let json = {comments}
-        if (submitData) {
-            submitData(`http://localhost:4000/api/comments/${id}`, 'DELETE', json )
+        if (submitRestrictedData) {
+            submitRestrictedData(`http://localhost:4000/api/comments/${id}`, 'DELETE', json )
             setDeleted(true)
 
-        }
+        } else {
+            console.log('401 Unatherized')
+          }
     }
 
     if (deleted) {
