@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
+import React from 'react'
 import Breadcrumbs from '../Components/BreadCrumbs'
 import UserCard from '../Elements/UserCard'
+import { getUsersQuery } from '../GraphQL/Queries'
  
 interface IUser {
   _id: string
@@ -11,27 +12,20 @@ interface IUser {
 
 
 function ViewUsers() {
-  const [users, setUsers] = useState<IUser[]>([])
-  const routeChange:any = useParams()
-
-  const getUsers = async () => {
-    const res = await fetch('http://localhost:4000/api/users')
-    setUsers(await res.json())
-  }
-
-
-  useEffect(() => {
-   
-    getUsers()
+  const {loading, error, data} = useQuery(getUsersQuery)
   
-  }, [routeChange])
+  if(loading) 
+    return (<div>loading...</div>)
+  if(error)
+    return (<div>Error...</div>)
+
   
 
   return (
     <div>
       <Breadcrumbs page='View Users' prevPage='admin' /> 
       {
-        users.map(user => <UserCard key={user._id} id={user._id} name={user.name} email={user.email} />)
+        data.users.map((user: IUser) => <UserCard key={user._id} id={user._id} name={user.name} email={user.email} />)
       }
     </div>
   )

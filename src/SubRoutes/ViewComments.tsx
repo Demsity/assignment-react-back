@@ -1,7 +1,9 @@
+import { useQuery } from '@apollo/client'
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
 import Breadcrumbs from '../Components/BreadCrumbs'
 import CommentCard from '../Elements/CommentCard'
+import { getCommentsQuery } from '../GraphQL/Queries'
 
 interface IComments {
   _id: string
@@ -12,26 +14,20 @@ interface IComments {
 
 
 function ViewComments() {
-  const [comments, setComments] = useState<IComments[]>([])
   const routeChange:any = useParams()
 
-  const getComments = async () => {
-    const res = await fetch('http://localhost:4000/api/comments')
-    setComments(await res.json())
-  }
+  const {loading, error, data} = useQuery(getCommentsQuery)
   
-  
-  useEffect(() => {
-    getComments()
-  }, [routeChange])
-
-
+  if(loading) 
+    return (<div>loading...</div>)
+  if(error)
+    return (<div>Error...</div>)
 
   return (
     <div className='__cp-container container'>
       <Breadcrumbs page='View Comments' prevPage='admin' />
       {
-        comments!.map(comment => <CommentCard key={comment._id} id={comment._id} name={comment.name} email={comment.email} comments={comment.comment} />)
+        data.comments.map((comment:IComments) => <CommentCard key={comment._id} id={comment._id} name={comment.name} email={comment.email} comments={comment.comment} />)
       }
     </div>
   )
