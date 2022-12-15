@@ -9,7 +9,7 @@ function SearchBar() {
     const { products, getProducts } = useProducts()
 
     useEffect(() => {
-        getProducts()
+        // getProducts()
 
     }, [])
 
@@ -38,7 +38,7 @@ function SearchBar() {
             <div className='__query-products'>
                 {
                     // render out product matching the query
-                   query ==='' ? 'Type in the searchbar' : search(products).map(product => <GridCard key={product.articleNumber} products={product} path={`/product/${product.articleNumber}/description`} />)
+                   query ==='' ? 'Type in the searchbar' : search(products).map(product => <GridCard key={product._id} products={product} path={`/product/${product._id}/description`} />)
                     
                 }
             </div>

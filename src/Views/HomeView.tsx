@@ -11,28 +11,32 @@ import PromoBanner from '../Components/PromoBanner'
 import SaleGrid from '../Components/SaleGrid'
 import Showcase from '../Components/Showcase'
 import SiteInfo from '../Components/SiteInfo'
+import { useQuery } from '@apollo/client'
+import { getProductsTagQuery ,getProductsPriceQuery } from '../GraphQL/Queries'
 
 function HomeView() {
-  const { productsByTag, getProductsByTag, getProductsByPrice, getProductsByPrice2, productsByPrice, productsByPrice2 } = useProducts()
 
-  useEffect(() => {
-    getProductsByTag('featured', 8)
-    getProductsByPrice(49, 4)
-    getProductsByPrice2(29, 4)
-    
-  }, [])
+  const featured = useQuery(getProductsTagQuery("featured"))
+  const price1 = useQuery(getProductsPriceQuery(29))
+  const price2 = useQuery(getProductsPriceQuery(49))
+
+  
+  if(featured.loading) 
+    return (<div>loading...</div>)
+  if(featured.error)
+    return (<div>Error...</div>)
+  
   
   return (
     <>
         <Navbar />
         <Showcase />
         <PromoBanner />
-        <FeaturedGrid title='Featured Products' products={productsByTag} />
+        <FeaturedGrid title='Featured Products' products={featured.data.productsTag.slice(0-7)} />
         <NewsBanner />
         <OurSpeciality />
-        {/* made a .slice due to API limitations, maybe fix later */}
-        <SaleGrid products={productsByPrice} />
-        <SaleGrid products={productsByPrice2} imgRight={true} />
+        <SaleGrid products={price1.data.productsPrice} />
+        <SaleGrid products={price2.data.productsPrice} imgRight={true} />
         <FlashSale />
         {/* <ProductDisplay products={gridProducts.slice(5)} /> */}
         <SiteInfo />

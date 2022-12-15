@@ -32,7 +32,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <CartProvider>
-      <ProductsProvider>
+      {/* <ProductsProvider> */}
         <Routes>
             <Route path='/' element={<HomeView />} />
             <Route path='/admin/' element={<AdminView />}>
@@ -56,7 +56,7 @@ function App() {
             <Route path='/categories/:category' element={<CategoriesViewSingle />} />
             <Route path='*' element={<PageNotFound />} />
         </Routes>
-      </ProductsProvider>
+      {/* </ProductsProvider> */}
       </CartProvider>
     </Router>
   );

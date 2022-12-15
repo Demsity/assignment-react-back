@@ -4,7 +4,7 @@ import { useProducts } from '../Contexts/ProductsContext'
 import { submitRestrictedData, validateProduct } from '../Utilities/Submit&Validation'
 
 interface INewProduct {
-    articleNumber: string
+    _id: string
     name: string
     description: string
     category: string
@@ -24,7 +24,7 @@ interface INewProduct {
 
 
 function UpdateProduct() {
-    const [default_product, setDefault_product] = useState<INewProduct>({ articleNumber: '', name: '', description: '', category: '', price: NaN, rating: NaN, imageName: ''})
+    const [default_product, setDefault_product] = useState<INewProduct>({ _id: '', name: '', description: '', category: '', price: NaN, rating: NaN, imageName: ''})
     const [default_error, setDefault_error] = useState<IError>({name: '', description: '', category: '', price: '', rating: '', imageName: ''})
     const [updatedProduct, setUpdatedProduct ] = useState(default_product)
     const [productError, setProductError] = useState<IError>(default_error)

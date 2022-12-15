@@ -3,20 +3,22 @@ import Categories from '../Components/Categories'
 import { useProducts } from '../Contexts/ProductsContext'
 import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
+import { getCategorysQuery } from '../GraphQL/Queries'
+import { useQuery } from '@apollo/client'
 
 function CategoriesView() {
 
-  const { products, getProducts } = useProducts()
-
-  useEffect(() => {
-    getProducts()
+  const {loading, error, data} = useQuery(getCategorysQuery)
   
-  }, [])
+  if(loading) 
+    return (<div>loading...</div>)
+  if(error)
+    return (<div>Error...</div>)
 
   return (
   <>
     <Navbar />
-    <Categories products={products} />
+    <Categories products={data.products} />
     <Footer />
   </>
   )

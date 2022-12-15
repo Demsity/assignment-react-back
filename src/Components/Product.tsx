@@ -57,7 +57,7 @@ function Product( { product }:IProductProps ) {
                                 <div className='__product-grid-text'>
                                     <h3 className='__product-name'>{product.name}</h3>
                                     <div className='__product-details'>
-                                        <p>sku: {product.articleNumber}</p>
+                                        <p>sku: {product._id}</p>
                                         <p>Brand: northland</p>
                                     </div> 
                                     <div className='__product-rating'>

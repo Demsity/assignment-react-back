@@ -16,7 +16,7 @@ interface CartProviderProps {
 }
 
 interface ICartItems {
-    articleNumber: string
+    _id: string
     name: string
     description: string
     category: string
@@ -46,18 +46,18 @@ export const CartProvider = ({children}:CartProviderProps) => {
 
     // get the quantity of a single procut
     function getItemQuantity(articleNumber: string) {
-        return cartItems.find(item => item.articleNumber === articleNumber)!.quantity || 0
+        return cartItems.find(item => item._id === articleNumber)!.quantity || 0
     }
 
     // increment the product quantity in the shoppingcart
    const incrementQuantity = ( product: ICartItems, inputAmount?: number) => {
-        const {articleNumber, name, description, category, price, rating, imageName} = product
+        const {_id, name, description, category, price, rating, imageName} = product
         setCartItems(currItems => {
-            if (currItems.find(item => item.articleNumber === articleNumber) == null) {
-                return [...currItems, {articleNumber, name, description, category, price, rating, imageName, quantity: inputAmount || 1}]
+            if (currItems.find(item => item._id === _id) == null) {
+                return [...currItems, {_id, name, description, category, price, rating, imageName, quantity: inputAmount || 1}]
             } else {
                 return currItems.map(item => {
-                    if (item.articleNumber === articleNumber){
+                    if (item._id === _id){
                         return { ...item, quantity: item.quantity! + 1}
                     } else {
                         return item
@@ -71,11 +71,11 @@ export const CartProvider = ({children}:CartProviderProps) => {
     // decrement the product quantity in the shoppingcart
     const decrementQuantity = (articleNumber: string) => {
         setCartItems(currItems => {
-            if (currItems.find(item => item.articleNumber === articleNumber)!.quantity === 1) {
-                return currItems.filter(item => item.articleNumber !== articleNumber)
+            if (currItems.find(item => item._id === articleNumber)!.quantity === 1) {
+                return currItems.filter(item => item._id !== articleNumber)
             } else {
                 return currItems.map(item => {
-                    if (item.articleNumber === articleNumber){
+                    if (item._id === articleNumber){
                         return { ...item, quantity: item.quantity! -1}
                     } else {
                         return item
@@ -90,7 +90,7 @@ export const CartProvider = ({children}:CartProviderProps) => {
     // remove product from cart
     const removeItem = (articleNumber: string) => {
         setCartItems(items => {
-            return items.filter(item => item.articleNumber !== articleNumber)
+            return items.filter(item => item._id !== articleNumber)
         })
     }
 
