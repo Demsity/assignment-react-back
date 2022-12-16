@@ -27,6 +27,44 @@ mutation AddProduct(
 }
 `
 
+export const putProductQuery  = gql
+`
+mutation UpdateProduct(
+    $_id: String!,
+    $name: String!,
+    $category: String!, 
+    $description: String!, 
+    $tag: String!, 
+    $price: String!, 
+    $rating: String!, 
+    $imageName: String!
+    ){
+        updateProduct(
+            _id: $_id,
+            name: $name, 
+            category: $category, 
+            description: $description, 
+            tag: $tag, 
+            price: $price, 
+            rating: $rating, 
+            imageName: $imageName
+            ) {
+                name
+    }
+}
+`
+export const removeProductQuery  = gql
+`
+mutation RemoveProduct(
+    $_id: String!,
+    ){
+        removeProduct(
+            _id: $_id,
+            ) {
+                _id
+    }
+}
+`
 
 
 // comments

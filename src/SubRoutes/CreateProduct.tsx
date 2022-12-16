@@ -56,9 +56,10 @@ function CreateProduct() {
   }, [newProduct])
 
 
+
   const handleSubmit = (e:React.FormEvent<EventTarget>) => {
     e.preventDefault()
-    
+    console.log(newProduct)
     if (
       productError.name === '' &&
       productError.description === '' && 
@@ -73,8 +74,8 @@ function CreateProduct() {
           description: newProduct.description,
           category: newProduct.category,
           tag: newProduct.tag,
-          price: newProduct.price,
-          rating: newProduct.rating,
+          price: newProduct.price.toString(),
+          rating: newProduct.rating.toString(),
           imageName: newProduct.imageName
         }})
 

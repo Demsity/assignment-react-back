@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumbs from '../Components/BreadCrumbs'
 import { useProducts } from '../Contexts/ProductsContext'
-import { submitRestrictedData, validateProduct } from '../Utilities/Submit&Validation'
+import { validateProduct } from '../Utilities/Submit&Validation'
+import { putProductQuery, removeProductQuery } from '../GraphQL/Mutations'
+import { getProductQuery } from '../GraphQL/Queries'
+import { useMutation, useQuery } from '@apollo/client'
 
 interface INewProduct {
     _id: string
@@ -11,6 +14,7 @@ interface INewProduct {
     price: number
     rating: number
     imageName: string
+    tag: string
   }
 
   interface IError {
@@ -24,7 +28,7 @@ interface INewProduct {
 
 
 function UpdateProduct() {
-    const [default_product, setDefault_product] = useState<INewProduct>({ _id: '', name: '', description: '', category: '', price: NaN, rating: NaN, imageName: ''})
+    const [default_product, setDefault_product] = useState<INewProduct>({ _id: '', name: '', description: '', category: '', price: NaN, rating: NaN, imageName: '', tag: ''})
     const [default_error, setDefault_error] = useState<IError>({name: '', description: '', category: '', price: '', rating: '', imageName: ''})
     const [updatedProduct, setUpdatedProduct ] = useState(default_product)
     const [productError, setProductError] = useState<IError>(default_error)
@@ -32,6 +36,8 @@ function UpdateProduct() {
     const [query, setQuery] = useState({articleNumber: ''})
     const [userLoaded, setUserLoaded] = useState(false)
     const { product, getProduct} = useProducts()
+    const [updateProduct] = useMutation(putProductQuery)
+    const [removeProduct] = useMutation(removeProductQuery)
 
     // set updated product if input is a string
     const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
@@ -51,76 +57,73 @@ function UpdateProduct() {
         setQuery({...query, [id]: value })
     }
 
+    const {loading, error, data, refetch} = useQuery(getProductQuery(query.articleNumber), {
+        skip: (!userLoaded)
+    })
+
+
+    // refetch from GraphQL
+    useEffect(() => {
+        refetch()
+        if(data) {
+            console.log(data.product)
+            setUpdatedProduct(data.product)
+        }
+
+      }, [userLoaded])
+
     // Validate update form
     useEffect(() => {
         setProductError(validateProduct(updatedProduct))
         
       }, [updatedProduct])
 
-    
+      const onRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target
+        setUpdatedProduct({...updatedProduct, [name]: value})
+      } 
 
     const handleSubmitLoad = (e : React.FormEvent<EventTarget>) => {
         e.preventDefault()
-        getProduct(query.articleNumber)
-        setUpdatedProduct(product!)
+        console.log(query.articleNumber)
         setUserLoaded(true)
+        
+ 
     }
     
-
 
 
     const handleSubmit = (e : React.FormEvent<EventTarget>) => {
 
         e.preventDefault()
 
-            fetch(`http://localhost:4000/api/products/${query}`, {
-                method: 'PUT', 
-                headers: {
-                    'Content-Type': 'application/json',
-                    'authorization': `Bearer ${localStorage.getItem('accesToken')}`
-                }, 
-                body: JSON.stringify(updatedProduct)
-            })
-            .then (res => {
-                if (res.status === 201 || res.status === 200 || res.status === 204) {
-                    setUserLoaded(false)
-                    setPageState(`Updated product with article-number:  ${query.articleNumber}`)
-                } else if (res.status === 401) {
-                    setUserLoaded(false)
-                    setPageState('Error 401: unauthorized')
-                    console.log('Error 401')
-                } else {
-                    console.log('error')
-                    setPageState('Error')
-                }
-            })
+        updateProduct({variables: {
+            _id: updatedProduct._id,
+            name: updatedProduct.name,
+            description: updatedProduct.description,
+            category: updatedProduct.category,
+            tag: updatedProduct.tag,
+            price: updatedProduct.price.toString(),
+            rating: updatedProduct.rating.toString(),
+            imageName: updatedProduct.imageName
+          }})
+          setUserLoaded(false)
+          setPageState(`Product with id ${query.articleNumber} is updated`)
+          setUpdatedProduct(default_product)
+      
     }
 
     const handleRemove = (e : React.FormEvent<EventTarget>) => {
 
         e.preventDefault()
 
-            fetch(`http://localhost:4000/api/products/${query}`, {
-                method: 'delete', 
-                headers: {
-                    'Content-Type': 'application/json',
-                    'authorization': `Bearer ${localStorage.getItem('accesToken')}`
-                }, 
-                body: JSON.stringify(query)
-            })
-            .then (res => {
-                if (res.status === 201 || res.status === 200 || res.status === 204) {
-                    setUserLoaded(false)
-                    setPageState(`Removed product with article-number:  ${query.articleNumber}`)
-                } else if (res.status === 401) {
-                    setUserLoaded(false)
-                    setPageState('Error 401: unauthorized')
-                    console.log('Error 401')
-                } else {
-                    console.log('error')
-                    setPageState('Error')
-                }
-            })
+        removeProduct({variables: {
+            _id: updatedProduct._id,
+
+        }})
+        setUserLoaded(false)
+        setPageState(`Product with id ${query.articleNumber} has been removed`)
+        setUpdatedProduct(default_product)
     }
 
 
@@ -162,6 +165,20 @@ function UpdateProduct() {
                         <label>Image(link)</label>
                         <input id='imageName' type="text" value={updatedProduct.imageName} onChange={event => onChange(event)} />
                         <div id='name-error' className='__text-error'>{productError.imageName}</div>
+                        <div className='__radio-buttons'>
+                            <div className='__radio-wrapper'>
+                                <input type='radio' name='tag' value='featured' onChange={event => onRadio(event)}  />
+                                <label>Featured Product</label>
+                            </div>
+                            <div className='__radio-wrapper'>
+                                <input type='radio' name='tag' value='news' onChange={event => onRadio(event)}  />
+                                <label>News</label>
+                            </div>
+                            <div className='__radio-wrapper'>
+                                <input type='radio' name='tag' value='' onChange={event => onRadio(event)}  />
+                                <label>No Tag</label>
+                            </div>
+                        </div>
                         <button className='__btn-red mt-3'>Update Product</button>
                     </form>
                     <form onSubmit={handleRemove}>
