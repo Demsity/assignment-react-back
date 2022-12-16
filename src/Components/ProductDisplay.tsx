@@ -14,21 +14,21 @@ function ProductDisplay( { products }:IProductDisplay ) {
             <h3>Latest Products</h3>
             {
                 // render products passed through props
-                products.map(product => <DisplayCard key={product.articleNumber} products={product} path={`/product/${product.articleNumber}/description`} />)
+                products.map(product => <DisplayCard key={product._id} products={product} path={`/product/${product._id}/description`} />)
             }
         </div>
         <div>
             <h3>Best Selling Product</h3>
             {
                 // render products passed through props
-                products.map(product => <DisplayCard key={product.articleNumber} products={product} path={`/product/${product.articleNumber}/description`} />)
+                products.map(product => <DisplayCard key={product._id} products={product} path={`/product/${product._id}/description`} />)
             }
         </div>
         <div>
             <h3>Top Reacted Product</h3>
             {
                 // render products passed through props
-                products.map(product => <DisplayCard key={product.articleNumber} products={product} path={`/product/${product.articleNumber}/description`} />)
+                products.map(product => <DisplayCard key={product._id} products={product} path={`/product/${product._id}/description`} />)
             }
         </div>
     </div>

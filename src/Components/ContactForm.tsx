@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import ButtonSquare from '../Elements/ButtonSquare'
 import { submitData, validate } from '../Utilities/Submit&Validation'
 import { ProductInterface } from '../Utilities/Interfaces'
+import { postCommentQuery } from '../GraphQL/Mutations'
+import {useMutation} from '@apollo/client'
 
 
 interface IFormErrors {
@@ -17,6 +19,7 @@ function ContactForm() {
     const [formErrors, setFormErrors] = useState({} as IFormErrors)
     const [formSubmitted, setFormSubmitted] = useState(false)
     const [failedSubmit, setFailedSubmit] = useState(false)
+    const [ addComment ] = useMutation(postCommentQuery)
 
     // register keypress
     const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
@@ -39,13 +42,12 @@ function ContactForm() {
 
         if (formErrors.name === '' && formErrors.email === '' && formErrors.comments === '') {
             
-            let json = {...contactForm}
-            if (submitData) {
-                submitData('http://localhost:4000/api/comments', 'POST', json )
-                setFormSubmitted(true)
-            }else {
-                setFailedSubmit(true)
-            }
+            addComment({variables: {
+                name: contactForm.name,
+                email: contactForm.email,
+                comment: contactForm.comments,
+            }})
+            setFormSubmitted(true)
 
 
         } else {

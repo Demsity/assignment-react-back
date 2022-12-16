@@ -16,7 +16,7 @@ function FeaturedGrid( {title, products}:FeaturedGridProps ) {
             <div className='__grid'>
                 {
                     // Render products passed throught props
-                   products.map(product => <GridCard key={product.articleNumber} products={product} path={`/product/${product.articleNumber}/description`} />)
+                   products.map(product => <GridCard key={product._id} products={product} path={`/product/${product._id}/description`} />)
                 }
 
 

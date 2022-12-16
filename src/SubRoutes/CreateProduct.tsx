@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Breadcrumbs from '../Components/BreadCrumbs'
 import { ProductInterface } from '../Utilities/Interfaces'
 import { validateProduct, submitRestrictedData } from '../Utilities/Submit&Validation'
+import {useMutation} from '@apollo/client'
+import { postProductQuery } from '../GraphQL/Mutations'
 
 interface INewProduct {
   name: string
@@ -30,6 +32,7 @@ function CreateProduct() {
   const [productError, setProductError] = useState<IError>(default_error)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [pageState, setPageState] = useState('')
+  const [addProduct] = useMutation(postProductQuery)
 
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
@@ -53,9 +56,10 @@ function CreateProduct() {
   }, [newProduct])
 
 
+
   const handleSubmit = (e:React.FormEvent<EventTarget>) => {
     e.preventDefault()
-    
+    console.log(newProduct)
     if (
       productError.name === '' &&
       productError.description === '' && 
@@ -65,33 +69,21 @@ function CreateProduct() {
       productError.imageName === ''
       ) {
 
+        addProduct({variables: {
+          name: newProduct.name,
+          description: newProduct.description,
+          category: newProduct.category,
+          tag: newProduct.tag,
+          price: newProduct.price.toString(),
+          rating: newProduct.rating.toString(),
+          imageName: newProduct.imageName
+        }})
 
-
-        fetch('http://localhost:4000/api/products', {
-          method: 'POST', 
-          headers: {
-              'Content-Type': 'application/json',
-              'authorization': `Bearer ${localStorage.getItem('accesToken')}`
-          }, 
-          body: JSON.stringify(newProduct)
-      })
-      .then (res => {
-          if (res.status === 201 || res.status === 200 || res.status === 204) {
-              setFormSubmitted(true)
-              setNewProduct(default_product)
-              setPageState('Product created!')
-          } else if (res.status === 401) {
-              setFormSubmitted(true)
-              setNewProduct(default_product)
-              setPageState('Error 401: unauthorized')
-              
-          } else {
-              console.log('error')
-          }
-      })
-  }
+        setFormSubmitted(true)
+        setPageState('Product Created')
+        setNewProduct(default_product)
+    }
 }
-
 
   return (
     <div className='container __cp-container'>

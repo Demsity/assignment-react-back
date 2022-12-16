@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { submitRestrictedData } from '../Utilities/Submit&Validation'
+import { useMutation } from '@apollo/client'
+import { removeCommentQuery } from '../GraphQL/Mutations'
 
 interface CommentCardProps {
     id: string
@@ -10,18 +11,16 @@ interface CommentCardProps {
 
 function CommentCard({ id, name, email, comments }: CommentCardProps) {
     const [deleted, setDeleted] = useState(false)
+    const [removeComment] = useMutation(removeCommentQuery)
 
     const handleRead = (e: React.FormEvent<EventTarget>) => {
         e.preventDefault()
 
-        let json = {comments}
-        if (submitRestrictedData) {
-            submitRestrictedData(`http://localhost:4000/api/comments/${id}`, 'DELETE', json )
-            setDeleted(true)
+        removeComment({variables: {
+            _id: id,
 
-        } else {
-            console.log('401 Unatherized')
-          }
+        }})
+        setDeleted(true)
     }
 
     if (deleted) {

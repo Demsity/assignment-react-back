@@ -5,20 +5,24 @@ import Navbar from '../Components/Navbar'
 import { useLocation } from 'react-router-dom'
 import Breadcrumbs from '../Components/BreadCrumbs'
 import { useProducts } from '../Contexts/ProductsContext'
+import { getCategorysQuery, getProductsQuery } from '../GraphQL/Queries'
+import { useQuery } from '@apollo/client'
+import { ProductInterface } from '../Utilities/Interfaces'
 
 function CategoriesViewSingle( ) {
-    const { products, getProducts } = useProducts()
-
-    useEffect(() => {
-      getProducts()
-    
-    }, [])
+    const {loading, error, data} = useQuery(getProductsQuery)
+  
+    if(loading) 
+      return (<div>loading...</div>)
+    if(error)
+      return (<div>Error...</div>)
 
     const location = useLocation()
-    let filtered = []
+    let filtered :ProductInterface[] = []
 
     // filter products based on url location
-    filtered = products.filter((products) => {return products.category === location.state})
+    filtered = data.products.filter((products:ProductInterface) => {return products.category === location.state})
+    console.log(filtered)
     return (
         <>
             <Navbar />
@@ -29,7 +33,7 @@ function CategoriesViewSingle( ) {
                 
                 {
                     // render out products based on url location
-                    filtered.map(filtered => <GridCard key={filtered.articleNumber} products={filtered} path={`../product/${filtered.articleNumber}/description`} />)
+                    filtered.map(filtered => <GridCard key={filtered._id} products={filtered} path={`../product/${filtered._id}/description`} />)
                 }
 
                 </div>

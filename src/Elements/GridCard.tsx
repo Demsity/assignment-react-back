@@ -35,11 +35,11 @@ function GridCard( {products, path}:GridCardProps ) {
                 <div className="__grid-rating">
                     {
                         // render out a star for each rating value. Create a array with value
-                        Array(products.rating).fill(0).map(item => <i key={uuidv4()} className="fa-sharp fa-solid fa-star-sharp"></i>)
+                        Array(Number(products.rating)).fill(0).map(item => <i key={uuidv4()} className="fa-sharp fa-solid fa-star-sharp"></i>)
                     }
                 </div>
                 <div className="__grid-price">
-                    <p className="__grid-price-original">{'$'+ products.price.toFixed(2)}</p>
+                    <p className="__grid-price-original">{'$'+ Number(products.price).toFixed(2)}</p>
             </div>
         </div>
     </div>

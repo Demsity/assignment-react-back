@@ -16,7 +16,7 @@ function CartProduct({ product }:CartProductProps) {
   } = useCart()
 
   useEffect(() => {
-    setQuantity(getItemQuantity(product.articleNumber))
+    setQuantity(getItemQuantity(product._id))
 
   }, [getItemQuantity])
 
@@ -30,7 +30,7 @@ function CartProduct({ product }:CartProductProps) {
         <h3>{product.name}</h3>
         <div className='__counter'>
           {/* need to check against '2' for it to work properly for some reason */}
-          <button onClick={() => quantity! < 2 ? removeItem(product.articleNumber) : decrementQuantity(product.articleNumber)}>-</button>
+          <button onClick={() => quantity! < 2 ? removeItem(product._id) : decrementQuantity(product._id)}>-</button>
           <div className='__count'>{quantity}</div>
           <button onClick={() => incrementQuantity(product)}>+</button>
         </div>
@@ -38,7 +38,7 @@ function CartProduct({ product }:CartProductProps) {
       <div className='__cart-item-price-and-remove'>
         <span className='__cart-item-price'>{`$${product.price! * quantity!}`}</span>
         <div className='__cart-item-remove'>
-        <button onClick={() => removeItem(product.articleNumber)}><i className="fa-solid fa-trash"></i></button>
+        <button onClick={() => removeItem(product._id)}><i className="fa-solid fa-trash"></i></button>
       </div>
       </div>
 
