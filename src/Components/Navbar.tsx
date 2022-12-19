@@ -54,7 +54,7 @@ const Navbar = () => {
             <button className={'__round-button'} type='button' data-bs-toggle="offcanvas" data-bs-target={'#search'} aria-controls={'search'} >
               <i className='fa-regular fa-magnifying-glass'></i>
             </button>
-            <ButtonRound hideOnMobile={true} icon='fa-light fa-code-compare'  />
+            <NavLink className='__round-button' to='/login' ><i className="fa-solid fa-user"></i></NavLink>
             <ButtonRound hideOnMobile={true} icon='fa-light fa-heart' />
             <button className={'__round-button'} type='button' data-bs-toggle="offcanvas" data-bs-target={'#cart'} aria-controls={'cart'} >
               <i className='fa-light fa-bag-shopping'></i>

@@ -21,9 +21,9 @@ function HomeView() {
   const price2 = useQuery(getProductsPriceQuery(49))
 
   
-  if(featured.loading) 
+  if(featured.loading || price1.loading || price2.loading) 
     return (<div>loading...</div>)
-  if(featured.error)
+  if(featured.error || price1.error || price2.error)
     return (<div>Error...</div>)
   
   
@@ -32,7 +32,7 @@ function HomeView() {
         <Navbar />
         <Showcase />
         <PromoBanner />
-        <FeaturedGrid title='Featured Products' products={featured.data.productsTag.slice(0-7)} />
+        <FeaturedGrid title='Featured Products' products={featured.data.productsTag.slice(0-8)} />
         <NewsBanner />
         <OurSpeciality />
         <SaleGrid products={price1.data.productsPrice} />
