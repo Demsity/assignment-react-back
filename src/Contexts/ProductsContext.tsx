@@ -1,6 +1,8 @@
+// Not used anymore, leaving it in for review
+
+
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import SearchBar from "../Components/SearchBar";
-import { useQuery } from '@apollo/client'
 
 interface IProductsProviderProps {
     children: ReactNode

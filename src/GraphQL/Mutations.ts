@@ -1,7 +1,7 @@
 let { gql } = require('@apollo/client')
 
 
-// products 
+// Create a new product
 export const postProductQuery  = gql
 `
 mutation AddProduct(
@@ -27,6 +27,7 @@ mutation AddProduct(
 }
 `
 
+// Update an exsisting product
 export const putProductQuery  = gql
 `
 mutation UpdateProduct(
@@ -53,6 +54,8 @@ mutation UpdateProduct(
     }
 }
 `
+
+//  remove Product
 export const removeProductQuery  = gql
 `
 mutation RemoveProduct(

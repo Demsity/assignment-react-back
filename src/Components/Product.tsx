@@ -63,7 +63,7 @@ function Product( { product }:IProductProps ) {
                                     <div className='__product-rating'>
                                         {
                                             // create array from rating value and render star for each
-                                            Array(product!.rating).fill(0).map(item => <i key={uuidv4()} className="fa-sharp fa-solid fa-star-sharp"></i>)
+                                            Array(Number(product.rating)).fill(0).map(item => <i key={uuidv4()} className="fa-sharp fa-solid fa-star-sharp"></i>)
                                         }
                                     </div>
                                     <div className='__product-price'>
